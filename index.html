@@ -75,7 +75,8 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            background: linear-gradient(135deg, var(--forest) 0%, var(--earth-dark) 100%);
+            background: linear-gradient(135deg, rgba(26, 58, 32, 0.85) 0%, rgba(45, 58, 46, 0.85) 100%), 
+                        url('images/farm-view.jpg') center/cover no-repeat;
         }
 
         .hero::before {
@@ -99,7 +100,7 @@
 
         .hero h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3rem, 8vw, 7rem);
+            font-size: clamp(2.5rem, 6vw, 5.5rem);
             font-weight: 300;
             color: var(--cream);
             margin-bottom: 30px;
@@ -155,12 +156,12 @@
             margin-top: 10px;
             background: var(--earth-dark);
             border-radius: 4px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.6);
             min-width: 250px;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
-            z-index: 100;
+            z-index: 10000;
         }
 
         .dropdown-menu.active {
@@ -242,6 +243,41 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: var(--cream);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        .scroll-indicator p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .scroll-arrow {
+            font-size: 2rem;
+            opacity: 0.8;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
             }
         }
 
@@ -542,6 +578,12 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="scroll-indicator" onclick="document.querySelector('.intro').scrollIntoView({behavior: 'smooth'})">
+                <p data-lang="en" class="active-lang">Scroll to explore</p>
+                <p data-lang="es">Desplázate para explorar</p>
+                <div class="scroll-arrow">↓</div>
             </div>
         </div>
     </section>
