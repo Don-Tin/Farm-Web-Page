@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Lilly Pad - Finca la Querencia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --earth-dark: #2d3a2e;
+            --earth-medium: #4a6741;
+            --earth-light: #8b9f87;
+            --cream: #f5f1e8;
+            --terracotta: #c65d3b;
+            --sand: #e8dcc4;
+            --coffee: #5c4033;
+            --forest: #1a3a20;
+            --gold: #d4a574;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background-color: var(--cream);
+            color: var(--earth-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--cream);
+            border: 2px solid var(--earth-medium);
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .language-toggle button {
+            background: transparent;
+            border: none;
+            padding: 12px 24px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--earth-dark);
+        }
+
+        .language-toggle button.active {
+            background: var(--earth-medium);
+            color: var(--cream);
+        }
+
+        .language-toggle button:hover:not(.active) {
+            background: var(--sand);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(26, 58, 32, 0.5) 0%, rgba(45, 58, 46, 0.6) 100%), 
+                        url('lilly-pad-images/d679f9a1-2b6f-45b4-b15d-869e1f1d8d26.jpg') center/cover no-repeat;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /%3E%3C/filter%3E%3Crect width="100" height="100" filter="url(%23noise)" opacity="0.05"/%3E%3C/svg%3E');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            padding: 40px;
+            animation: fadeInUp 1.2s ease-out;
+            margin-top: -50px;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 7vw, 6rem);
+            font-weight: 300;
+            color: var(--cream);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            color: var(--sand);
+            font-style: italic;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(245, 241, 232, 0.9);
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--earth-dark);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--earth-medium);
+        }
+
+        .back-link:hover {
+            background: var(--earth-medium);
+            color: var(--cream);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 300;
+            margin-bottom: 40px;
+            color: var(--earth-dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 2px;
+            background: var(--terracotta);
+        }
+
+        /* Description Section */
+        .description {
+            background: var(--cream);
+        }
+
+        .description-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .description-text {
+            font-size: 1.1rem;
+        }
+
+        .description-text p {
+            margin-bottom: 20px;
+        }
+
+        .price-box {
+            background: linear-gradient(135deg, var(--earth-medium) 0%, var(--earth-dark) 100%);
+            padding: 40px;
+            border-radius: 8px;
+            color: var(--cream);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .price-box h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 15px;
+        }
+
+        .price-box .price {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+
+        .price-box .details {
+            font-size: 1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .price-box .contact-btn {
+            display: block;
+            background: var(--terracotta);
+            color: var(--cream);
+            text-align: center;
+            padding: 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        .price-box .contact-btn:hover {
+            background: var(--coffee);
+            transform: translateY(-2px);
+        }
+
+        .price-box .contact-info {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 20px;
+        }
+
+        /* Photo Gallery */
+        .gallery {
+            background: var(--sand);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Reviews */
+        .reviews {
+            background: var(--cream);
+        }
+
+        .rating-summary {
+            text-align: center;
+            margin: 40px 0;
+            padding: 40px;
+            background: var(--sand);
+            border-radius: 8px;
+        }
+
+        .rating-summary .stars {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .rating-summary .rating {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--earth-dark);
+        }
+
+        .rating-summary .count {
+            font-size: 1.2rem;
+            color: var(--earth-medium);
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .review-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--terracotta);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .review-card .stars {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .review-card .text {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .review-card .author {
+            font-weight: 600;
+            color: var(--earth-medium);
+            font-size: 0.95rem;
+        }
+
+        /* Farm Amenities Link */
+        .farm-link {
+            background: var(--sand);
+            text-align: center;
+            padding: 60px 40px;
+        }
+
+        .farm-link h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--earth-dark);
+        }
+
+        .farm-link p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .farm-link a {
+            display: inline-block;
+            background: var(--earth-medium);
+            color: var(--cream);
+            padding: 18px 50px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .farm-link a:hover {
+            background: var(--earth-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--earth-dark);
+            color: var(--sand);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .description-content {
+                grid-template-columns: 1fr;
+            }
+
+            .price-box {
+                position: static;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .review-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .back-link {
+                top: 10px;
+                left: 10px;
+                padding: 10px 18px;
+                font-size: 1rem;
+            }
+
+            .language-toggle {
+                top: 10px;
+                right: 10px;
+            }
+        }
+
+        /* Hide inactive language */
+        [data-lang]:not(.active-lang) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Farm Link -->
+    <a href="index.html" class="back-link">← <span data-lang="en" class="active-lang">Back to Farm</span><span data-lang="es">Volver a la Finca</span></a>
+
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button id="lang-en" class="active" onclick="setLanguage('en')">English</button>
+        <button id="lang-es" onclick="setLanguage('es')">Español</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>The Lilly Pad</h1>
+            <p class="subtitle" data-lang="en">Compact Cottage at Finca la Querencia</p>
+            <p class="subtitle" data-lang="es">Cabaña Compacta en Finca la Querencia</p>
+        </div>
+    </section>
+
+    <!-- Description -->
+    <section class="description">
+        <div class="container">
+            <h2 class="section-title" data-lang="en">About The Lilly Pad</h2>
+            <h2 class="section-title" data-lang="es">Sobre The Lilly Pad</h2>
+            
+            <div class="description-content">
+                <div class="description-text">
+                    <div data-lang="en" class="active-lang">
+                        <p>An idyllic spot next to a pond nestled among fruit trees in an organic coffee plantation. The Lilly Pad is one of several houses on <a href="index.html" style="color: var(--terracotta); text-decoration: none; font-weight: 600;">Finca la Querencia</a>, a sustainable homestead farm combining dairy and animal husbandry with aquaculture, organic vegetables, coffee and more. We are located at the end of the road in a private valley, very close yet completely removed from the tourist hustle and bustle of Monteverde.</p>
+                        
+                        <p>The Lilly Pad is a compact cottage custom built on three levels, with lots of windows and natural light. The kitchen, dining area and a small sitting area are on the entry level. The living room is down a few stone steps with the sleeping loft above it. Access to the sleeping loft is via a narrow staircase that is built in above bookshelves.</p>
+                        
+                        <p>The kitchen has custom made concrete counter tops and sink, and has a new stove and refrigerator. The bathroom has an insulated cement tub and a shower. The solar hot water heater provides a great deal of very hot water. The house has a large walk-in closet and laundry drying greenhouse. There is an outdoor patio overlooking the tilapia pond and surrounded by greenery.</p>
+                        
+                        <p><strong>TRANSPORTATION:</strong> We strongly recommend that you have a car, preferably one with All-Wheel Drive (AWD). If you do not have a car please contact us so we can help you assess if this is a suitable location for you. While we are not far from Monteverde, the walk to town is a substantial uphill hike, though enthusiastic hikers will find it quite enjoyable. Taxis will come to the farm, but the cost is typically around $20 each way.</p>
+                    </div>
+                    
+                    <div data-lang="es">
+                        <p>Un lugar idílico junto a un estanque entre árboles frutales en una plantación de café orgánico. The Lilly Pad es una de varias casas en <a href="index.html" style="color: var(--terracotta); text-decoration: none; font-weight: 600;">Finca la Querencia</a>, una granja sostenible que combina ganadería lechera y cría de animales con acuicultura, vegetales orgánicos, café y más. Estamos ubicados al final del camino en un valle privado, muy cerca pero completamente alejados del bullicio turístico de Monteverde.</p>
+                        
+                        <p>The Lilly Pad es una cabaña compacta construida a medida en tres niveles, con muchas ventanas y luz natural. La cocina, el área de comedor y una pequeña sala de estar están en el nivel de entrada. La sala está unos escalones de piedra más abajo con el desván para dormir arriba. El acceso al desván es a través de una escalera estrecha construida sobre estanterías.</p>
+                        
+                        <p>La cocina tiene encimeras y fregadero de concreto hechos a medida, y tiene una estufa y refrigerador nuevos. El baño tiene una bañera de cemento aislada y una ducha. El calentador solar de agua proporciona una gran cantidad de agua muy caliente. La casa tiene un gran vestidor y un invernadero para secar ropa. Hay un patio al aire libre con vista al estanque de tilapias y rodeado de vegetación.</p>
+                        
+                        <p><strong>TRANSPORTE:</strong> Recomendamos encarecidamente que tenga un automóvil, preferiblemente uno con tracción en las cuatro ruedas (AWD). Si no tiene un automóvil, contáctenos para ayudarlo a evaluar si esta es una ubicación adecuada para usted. Aunque no estamos lejos de Monteverde, la caminata al pueblo es una subida considerable, aunque los excursionistas entusiastas la encontrarán bastante agradable. Los taxis vienen a la finca, pero el costo es típicamente alrededor de $20 por trayecto.</p>
+                    </div>
+                </div>
+                
+                <div class="price-box">
+                    <h3 data-lang="en" class="active-lang">Rental Information</h3>
+                    <h3 data-lang="es">Información de Alquiler</h3>
+                    
+                    <div class="price">₡400,000</div>
+                    <div class="details">
+                        <div data-lang="en" class="active-lang">per month</div>
+                        <div data-lang="es">por mes</div>
+                    </div>
+                    
+                    <div data-lang="en" class="active-lang">
+                        <p style="margin-bottom: 20px;"><strong>Included:</strong><br>
+                        • Water, electricity, internet<br>
+                        • Weekly cleaning<br>
+                        • 1 month minimum rental<br>
+                        • Renters fill gas tanks for stove</p>
+                    </div>
+                    
+                    <div data-lang="es">
+                        <p style="margin-bottom: 20px;"><strong>Incluido:</strong><br>
+                        • Agua, electricidad, internet<br>
+                        • Limpieza semanal<br>
+                        • Alquiler mínimo de 1 mes<br>
+                        • Inquilinos llenan tanques de gas</p>
+                    </div>
+                    
+                    <a href="https://wa.me/50683723431" class="contact-btn" target="_blank">
+                        <span data-lang="en" class="active-lang">Contact via WhatsApp</span>
+                        <span data-lang="es">Contactar por WhatsApp</span>
+                    </a>
+                    
+                    <div class="contact-info">
+                        <div data-lang="en" class="active-lang">
+                            <strong>WhatsApp:</strong> 8372-3431 or 8370-4014<br>
+                            <strong>Email:</strong> murthantim@gmail.com
+                        </div>
+                        <div data-lang="es">
+                            <strong>WhatsApp:</strong> 8372-3431 o 8370-4014<br>
+                            <strong>Email:</strong> murthantim@gmail.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title" data-lang="en">Photo Gallery</h2>
+            <h2 class="section-title" data-lang="es">Galería de Fotos</h2>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="lilly-pad-images/5a467703-6d6c-4ae7-89d8-e9cb5d2560e6__1_.jpg" alt="Interior living area"></div>
+                <div class="gallery-item"><img src="lilly-pad-images/6ce3ff8e-f268-4993-9b07-bd13ef1c10a7.jpg" alt="Bathroom with tub"></div>
+                <div class="gallery-item"><img src="lilly-pad-images/7e3d3e42-a476-4257-8852-ea6d6983987e.jpg" alt="Outdoor patio"></div>
+                <div class="gallery-item"><img src="lilly-pad-images/29c802c8-0ce9-4dbc-8315-4eb29d4c41db.jpg" alt="Walk-in closet"></div>
+                <div class="gallery-item"><img src="lilly-pad-images/38e0e7cf-f4c3-4647-aa82-4adcafcd7145.jpg" alt="Kitchen area"></div>
+                <div class="gallery-item"><img src="lilly-pad-images/40cfb3cf-5ed2-47cc-8c6f-cd8e31a2388f.jpg" alt="Living room view"></div>
+                <div class="gallery-item"><img src="lilly-pad-images/d2f03b28-c6de-4d48-bfe0-3fabf6a2e895.jpg" alt="Sleeping loft"></div>
+                <div class="gallery-item"><img src="lilly-pad-images/d9e4319f-ec8e-4f33-b13c-14fc9c4679b4.jpg" alt="Living area with stone"></div>
+                <div class="gallery-item"><img src="lilly-pad-images/d679f9a1-2b6f-45b4-b15d-869e1f1d8d26.jpg" alt="Exterior view"></div>
+                <div class="gallery-item"><img src="lilly-pad-images/DSC00233.jpg" alt="Kitchen sink detail"></div>
+                <div class="gallery-item"><img src="lilly-pad-images/DSC00239.jpg" alt="Bathroom vanity"></div>
+                <div class="gallery-item"><img src="lilly-pad-images/e44d6a25-1881-4a2b-aa34-c5ebf26a7eb5.jpg" alt="Dining area"></div>
+                <div class="gallery-item"><img src="lilly-pad-images/e65b8410-3f80-4c16-83ba-7878ebec2173.jpg" alt="Laundry area"></div>
+                <div class="gallery-item"><img src="lilly-pad-images/e8446274-14d8-4008-8991-c2c0a93bbb8d.jpg" alt="Bathroom"></div>
+                <div class="gallery-item"><img src="lilly-pad-images/50356396-b13e-4f23-a179-07c60a90de8f.jpg" alt="Living room daybed"></div>
+                <div class="gallery-item"><img src="lilly-pad-images/b0b28725-33b5-47fd-b982-d8f105ef4b12.jpg" alt="Living area"></div>
+                <div class="gallery-item"><img src="lilly-pad-images/b858f598-92c6-4a11-8227-4aa477301cd6__1_.jpg" alt="Porch"></div>
+                <div class="gallery-item"><img src="lilly-pad-images/c91b8715-b86e-452b-aa06-58f115a4189c.jpg" alt="Bedroom with netting"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="reviews">
+        <div class="container">
+            <h2 class="section-title" data-lang="en">Guest Reviews</h2>
+            <h2 class="section-title" data-lang="es">Reseñas de Huéspedes</h2>
+            
+            <div class="rating-summary">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <div class="rating">4.95</div>
+                <div class="count" data-lang="en" class="active-lang">Average Rating from 74 Reviews</div>
+                <div class="count" data-lang="es">Calificación Promedio de 74 Reseñas</div>
+            </div>
+            
+            <div class="review-grid">
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <div class="text">"We stayed and worked remotely for 6 weeks and wish we could have stayed longer. The Lily Pad Casita is a peaceful, bright oasis and the farm is a beautiful and interesting place to explore. Being able to eat from the garden was extremely helpful. We loved greeting the animals and feeding the sheep our compost. We also spent a lot of time birding right from the patio and stargazing at night! As nature lovers who don't mind bugs and big hikes, we didn't have any problems with the rustic nature of the farm and not having a car. We feel so lucky for our experience and for making some wonderful friends — we'll be back to this special place!"</div>
+                    <div class="author">— Darcy, Minnesota • April 2024</div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <div class="text">"I stayed at Murtha's airbnb for a month-long personal writing retreat, and felt inspired and motivated by amazing nature, spectacular vistas, farm animals and veggies picked up in the garden. The cottage, nicely secluded and tastefully decorated provided all the comfort and working space for extended stay. WiFi works well. There was so much to experience on the farm and in its surroundings that I actually was happy not having a car. Did I mention coffee straight from plantation! A superb place for a long stay that offers uniquely inspiring atmosphere!"</div>
+                    <div class="author">— Wieslaw, Florida • February 2024</div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <div class="text">"Probably the best Airbnb I've ever stayed at! The scenery is beautiful, the house is amazing and surrounded by nature, there's a huge organic garden in the back yard where you can pick fresh veggies everyday, the wifi is pretty solid and Tim and Murtha are absolutely lovely. I stayed a month and enjoyed it so much I'm planning to return. I recommend this place wholeheartedly."</div>
+                    <div class="author">— Laurence, Canada • May 2023</div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <div class="text">"I almost didn't want to write this review because I want to keep this perfect place to myself. It truly is one of the best Airbnb experiences we've ever had! The farm is beautifully located in a valley with monkeys in nearby trees. Sheep and cows greet you every time you enter the property. Fresh milk and yogurt, fruit and vegetables from the garden are all available and delicious. The room is clean, spacious, and so comfortable. You almost don't even need to buy tickets to activities since there is already so much to take in and enjoy on the property."</div>
+                    <div class="author">— Aileen, Virginia • January 2020</div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <div class="text">"La Querencia is a magical farm on the top of a hill overlooking what I imagine Heaven looks like. This was definitely the best stop of our Costa Rica adventures. You are tucked away from everything except the cows, sheep, dogs, toucans, monkeys, and other wildlife. The homestead has had a lot of love poured into it and it definitely shows. We were truly enchanted and inspired by what Tim & Murtha created here. I suggest that you ditch the guided tours of the parks and just spend as much time as you can here instead. We saw more wildlife on the farm than on the tour anyway!"</div>
+                    <div class="author">— Karen, Texas • December 2016</div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <div class="text">"I stayed at the farm for a longstay and it was magical to say the least. I fell in love with the bathtub. The cottage porch was the perfect place to meditate and study. The sunset was breathtaking. I was able to use the fresh mint and limes on the farm to make an amazing mojito and soak in the beautiful concrete tub at the end of my days. The bed was very comfortable. Tim & Murtha were hands down the most amazing hosts I come across. If you love nature, fresh air, breathtaking sunsets, and fresh farm fruits and herbs then I highly recommend booking this enchanted Airbnb."</div>
+                    <div class="author">— Ryan, California • June 2021</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Farm Amenities Link -->
+    <section class="farm-link">
+        <div class="container">
+            <h3 data-lang="en" class="active-lang">Explore Farm Amenities</h3>
+            <h3 data-lang="es">Explora las Comodidades de la Finca</h3>
+            
+            <p data-lang="en" class="active-lang">The Lilly Pad is part of Finca la Querencia, which offers organic gardens, swimming pond, hot tub, community rancho, farm products, and more!</p>
+            <p data-lang="es">The Lilly Pad es parte de Finca la Querencia, que ofrece jardines orgánicos, estanque para nadar, jacuzzi, rancho comunitario, productos de la finca, ¡y más!</p>
+            
+            <a href="index.html">
+                <span data-lang="en" class="active-lang">Visit Farm Page</span>
+                <span data-lang="es">Visitar Página de la Finca</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p data-lang="en" class="active-lang">&copy; 2026 The Lilly Pad at Finca la Querencia</p>
+            <p data-lang="es">&copy; 2026 The Lilly Pad en Finca la Querencia</p>
+        </div>
+    </footer>
+
+    <script>
+        function setLanguage(lang) {
+            document.querySelectorAll('.language-toggle button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('lang-' + lang).classList.add('active');
+            
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.classList.remove('active-lang');
+            });
+            
+            document.querySelectorAll('[data-lang="' + lang + '"]').forEach(el => {
+                el.classList.add('active-lang');
+            });
+            
+            localStorage.setItem('preferredLanguage', lang);
+        }
+        
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            setLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
