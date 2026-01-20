@@ -75,7 +75,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(26, 58, 32, 0.85) 0%, rgba(45, 58, 46, 0.85) 100%), 
+            background: linear-gradient(135deg, rgba(26, 58, 32, 0.5) 0%, rgba(45, 58, 46, 0.6) 100%), 
                         url('images/farm-view.jpg') center/cover no-repeat;
         }
 
@@ -96,6 +96,7 @@
             padding: 40px;
             animation: fadeInUp 1.2s ease-out;
             max-width: 900px;
+            margin-top: -100px;
         }
 
         .hero h1 {
@@ -126,6 +127,7 @@
         .get-some-container {
             position: relative;
             display: inline-block;
+            z-index: 99999;
         }
 
         .get-some-btn {
@@ -154,14 +156,16 @@
             left: 50%;
             transform: translateX(-50%);
             margin-top: 10px;
-            background: var(--earth-dark);
+            background: rgba(45, 58, 46, 0.98);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--earth-light);
             border-radius: 4px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.8);
             min-width: 250px;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
-            z-index: 10000;
+            z-index: 99999;
         }
 
         .dropdown-menu.active {
