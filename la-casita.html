@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Casita - Finca la Querencia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #2e7d32;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .lang-toggle {
+            float: right;
+            margin-bottom: 20px;
+        }
+
+        .lang-toggle button {
+            padding: 6px 12px;
+            margin-left: 8px;
+            border: 1px solid #ddd;
+            background-color: white;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        .lang-toggle button:hover,
+        .lang-toggle button.active {
+            background-color: #f0f0f0;
+            border-color: #2e7d32;
+        }
+
+        .header {
+            clear: both;
+            padding-top: 20px;
+        }
+
+        h1 {
+            color: #1a1a1a;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        h2 {
+            color: #1a1a1a;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin: 40px 0 20px 0;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #1a1a1a;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin: 30px 0 15px 0;
+        }
+
+        p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        a {
+            color: #2e7d32;
+        }
+
+        strong {
+            font-weight: 600;
+        }
+
+        .rental-box {
+            background-color: #f5f5f5;
+            border-left: 4px solid #2e7d32;
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .price {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .price-period {
+            color: #666;
+            font-size: 0.4em;
+            font-weight: normal;
+            display: block;
+        }
+
+        .whatsapp-link {
+            display: inline-block;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .whatsapp-link:hover {
+            background-color: #20BA5A;
+        }
+
+        .contact-info {
+            margin: 15px 0;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 4px;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .farm-link-box {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 4px;
+            margin: 50px 0;
+        }
+
+        .farm-link-box h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .farm-link-box p {
+            margin-bottom: 20px;
+        }
+
+        .farm-button {
+            display: inline-block;
+            background-color: white;
+            color: #2e7d32;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .farm-button:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+        }
+
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .lang-toggle {
+                float: none;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .price {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Farm<br>Volver a la Finca</a>
+        
+        <div class="lang-toggle">
+            <button onclick="showLang('en')" id="btn-en" class="active">English</button>
+            <button onclick="showLang('es')" id="btn-es">Español</button>
+        </div>
+
+        <!-- English Content -->
+        <div id="lang-en" class="lang-content active">
+            <div class="header">
+                <h1>La Casita</h1>
+                <p class="subtitle">Original Farmhouse at Finca la Querencia</p>
+                <p class="subtitle">Casa Original de la Finca en Finca la Querencia</p>
+            </div>
+
+            <h2>About La Casita</h2>
+            <h2>Sobre La Casita</h2>
+            
+            <p>La Casita is the original farmhouse at <a href="index.html">Finca la Querencia</a>, a sustainable homestead farm combining dairy and animal husbandry with aquaculture, organic vegetables, coffee and more. We are located at the end of the road in a private valley, very close yet completely removed from the tourist hustle and bustle of Monteverde.</p>
+
+            <p>La Casita has been rebuilt and updated, yet still retains its original Tico charm. The house is full of art, both local (very) and from afar. It is funky and eclectic. Because it is the original house, La Casita enjoys a protected spot with a great view out over the gardens and pastures and the jungle canopy rising up the cliff edge beyond.</p>
+
+            <p>La Casita features a large kitchen/living room, a spacious bedroom with double bed, and a bathroom with both tub and shower (designed for two). The house is equipped with solar hot water heating.</p>
+
+            <p><strong>TRANSPORTATION:</strong> We strongly recommend that you have a car, preferably one with All-Wheel Drive (AWD). If you do not have a car please contact us so we can help you assess if this is a suitable location for you. While we are not far from Monteverde, the walk to town is a substantial uphill hike, though enthusiastic hikers will find it quite enjoyable. Taxis will come to the farm, but the cost is typically around $20 each way.</p>
+
+            <p>La Casita es la casa original de <a href="index.html">Finca la Querencia</a>, una granja sostenible que combina ganadería lechera y cría de animales con acuicultura, vegetales orgánicos, café y más. Estamos ubicados al final del camino en un valle privado, muy cerca pero completamente alejados del bullicio turístico de Monteverde.</p>
+
+            <p>La Casita ha sido reconstruida y actualizada, pero aún conserva su encanto Tico original. La casa está llena de arte, tanto local (muy) como de lugares lejanos. Es peculiar y ecléctica. Debido a que es la casa original, La Casita disfruta de un lugar protegido con una excelente vista sobre los jardines y pastos y el dosel de la selva que se eleva por el borde del acantilado.</p>
+
+            <p>La Casita cuenta con una amplia cocina/sala de estar, un espacioso dormitorio con cama doble y un baño con bañera y ducha (diseñado para dos). La casa está equipada con calentador solar de agua.</p>
+
+            <p><strong>TRANSPORTE:</strong> Recomendamos encarecidamente que tenga un automóvil, preferiblemente uno con tracción en las cuatro ruedas (AWD). Si no tiene un automóvil, contáctenos para ayudarlo a evaluar si esta es una ubicación adecuada para usted. Aunque no estamos lejos de Monteverde, la caminata al pueblo es una subida considerable, aunque los excursionistas entusiastas la encontrarán bastante agradable. Los taxis vienen a la finca, pero el costo es típicamente alrededor de $20 por trayecto.</p>
+
+            <div class="rental-box">
+                <h3>Rental Information</h3>
+                <h3>Información de Alquiler</h3>
+                
+                <div class="price">
+                    ₡275,000
+                    <span class="price-period">per month</span>
+                    <span class="price-period">por mes</span>
+                </div>
+
+                <p><strong>Included:</strong><br>
+                • Water, electricity, internet<br>
+                • Weekly cleaning<br>
+                • 6 month minimum rental<br>
+                • Renters fill gas tanks for stove</p>
+
+                <p><strong>Incluido:</strong><br>
+                • Agua, electricidad, internet<br>
+                • Limpieza semanal<br>
+                • Alquiler mínimo de 6 meses<br>
+                • Inquilinos llenan tanques de gas</p>
+
+                <a href="https://wa.me/50683723431" class="whatsapp-link">Contact via WhatsApp<br>Contactar por WhatsApp</a>
+
+                <div class="contact-info">
+                    <p><strong>WhatsApp:</strong> 8372-3431 or 8370-4014<br>
+                    <strong>Email:</strong> murthantim@gmail.com</p>
+                    
+                    <p><strong>WhatsApp:</strong> 8372-3431 o 8370-4014<br>
+                    <strong>Email:</strong> murthantim@gmail.com</p>
+                </div>
+            </div>
+
+            <h2>Photo Gallery</h2>
+            <h2>Galería de Fotos</h2>
+            
+            <div class="gallery">
+                <img src="casita-images/IMG_3694.jpg" alt="Exterior view with mountain backdrop">
+                <img src="casita-images/IMG_3709.jpg" alt="Living room with art collection">
+                <img src="casita-images/IMG_3710.jpg" alt="Kitchen and dining area">
+                <img src="casita-images/IMG_3713.jpg" alt="Covered porch area">
+                <img src="casita-images/IMG_3681.jpg" alt="Kitchen details">
+                <img src="casita-images/IMG_3689.jpg" alt="Living room with mask display">
+                <img src="casita-images/IMG_3690.jpg" alt="Open living space">
+                <img src="casita-images/IMG_3700.jpg" alt="Entry level view">
+                <img src="casita-images/IMG_3715.jpg" alt="Kitchen workspace">
+                <img src="casita-images/IMG_4126.jpg" alt="Bathroom with unique tub">
+                <img src="casita-images/DSC02227.jpg" alt="Bedroom with four-poster bed">
+                <img src="casita-images/DSC02335.jpg" alt="Exterior house view">
+                <img src="casita-images/File_006.jpg" alt="Porch seating area">
+                <img src="casita-images/File_007.jpg" alt="Porch with garden view">
+                <img src="casita-images/File_008.jpg" alt="Porch overlooking pasture">
+                <img src="casita-images/PXL_20211105_224422916.jpg" alt="Interior detail">
+                <img src="casita-images/WhatsApp_Image_2026-01-20_at_9_16_20_AM.jpg" alt="Interior living space">
+            </div>
+
+            <div class="farm-link-box">
+                <h3>Explore Farm Amenities</h3>
+                <h3>Explora las Comodidades de la Finca</h3>
+                <p>La Casita is part of Finca la Querencia, which offers organic gardens, swimming pond, hot tub, community rancho, farm products, and more!</p>
+                <p>La Casita es parte de Finca la Querencia, que ofrece jardines orgánicos, estanque para nadar, jacuzzi, rancho comunitario, productos de la finca, ¡y más!</p>
+                <a href="index.html" class="farm-button">Visit Farm Page<br>Visitar Página de la Finca</a>
+            </div>
+        </div>
+
+        <!-- Spanish Content -->
+        <div id="lang-es" class="lang-content">
+            <div class="header">
+                <h1>La Casita</h1>
+                <p class="subtitle">Casa Original de la Finca en Finca la Querencia</p>
+                <p class="subtitle">Original Farmhouse at Finca la Querencia</p>
+            </div>
+
+            <h2>Sobre La Casita</h2>
+            <h2>About La Casita</h2>
+            
+            <p>La Casita es la casa original de <a href="index.html">Finca la Querencia</a>, una granja sostenible que combina ganadería lechera y cría de animales con acuicultura, vegetales orgánicos, café y más. Estamos ubicados al final del camino en un valle privado, muy cerca pero completamente alejados del bullicio turístico de Monteverde.</p>
+
+            <p>La Casita ha sido reconstruida y actualizada, pero aún conserva su encanto Tico original. La casa está llena de arte, tanto local (muy) como de lugares lejanos. Es peculiar y ecléctica. Debido a que es la casa original, La Casita disfruta de un lugar protegido con una excelente vista sobre los jardines y pastos y el dosel de la selva que se eleva por el borde del acantilado.</p>
+
+            <p>La Casita cuenta con una amplia cocina/sala de estar, un espacioso dormitorio con cama doble y un baño con bañera y ducha (diseñado para dos). La casa está equipada con calentador solar de agua.</p>
+
+            <p><strong>TRANSPORTE:</strong> Recomendamos encarecidamente que tenga un automóvil, preferiblemente uno con tracción en las cuatro ruedas (AWD). Si no tiene un automóvil, contáctenos para ayudarlo a evaluar si esta es una ubicación adecuada para usted. Aunque no estamos lejos de Monteverde, la caminata al pueblo es una subida considerable, aunque los excursionistas entusiastas la encontrarán bastante agradable. Los taxis vienen a la finca, pero el costo es típicamente alrededor de $20 por trayecto.</p>
+
+            <p>La Casita is the original farmhouse at <a href="index.html">Finca la Querencia</a>, a sustainable homestead farm combining dairy and animal husbandry with aquaculture, organic vegetables, coffee and more. We are located at the end of the road in a private valley, very close yet completely removed from the tourist hustle and bustle of Monteverde.</p>
+
+            <p>La Casita has been rebuilt and updated, yet still retains its original Tico charm. The house is full of art, both local (very) and from afar. It is funky and eclectic. Because it is the original house, La Casita enjoys a protected spot with a great view out over the gardens and pastures and the jungle canopy rising up the cliff edge beyond.</p>
+
+            <p>La Casita features a large kitchen/living room, a spacious bedroom with double bed, and a bathroom with both tub and shower (designed for two). The house is equipped with solar hot water heating.</p>
+
+            <p><strong>TRANSPORTATION:</strong> We strongly recommend that you have a car, preferably one with All-Wheel Drive (AWD). If you do not have a car please contact us so we can help you assess if this is a suitable location for you. While we are not far from Monteverde, the walk to town is a substantial uphill hike, though enthusiastic hikers will find it quite enjoyable. Taxis will come to the farm, but the cost is typically around $20 each way.</p>
+
+            <div class="rental-box">
+                <h3>Información de Alquiler</h3>
+                <h3>Rental Information</h3>
+                
+                <div class="price">
+                    ₡275,000
+                    <span class="price-period">por mes</span>
+                    <span class="price-period">per month</span>
+                </div>
+
+                <p><strong>Incluido:</strong><br>
+                • Agua, electricidad, internet<br>
+                • Limpieza semanal<br>
+                • Alquiler mínimo de 6 meses<br>
+                • Inquilinos llenan tanques de gas</p>
+
+                <p><strong>Included:</strong><br>
+                • Water, electricity, internet<br>
+                • Weekly cleaning<br>
+                • 6 month minimum rental<br>
+                • Renters fill gas tanks for stove</p>
+
+                <a href="https://wa.me/50683723431" class="whatsapp-link">Contactar por WhatsApp<br>Contact via WhatsApp</a>
+
+                <div class="contact-info">
+                    <p><strong>WhatsApp:</strong> 8372-3431 o 8370-4014<br>
+                    <strong>Email:</strong> murthantim@gmail.com</p>
+                    
+                    <p><strong>WhatsApp:</strong> 8372-3431 or 8370-4014<br>
+                    <strong>Email:</strong> murthantim@gmail.com</p>
+                </div>
+            </div>
+
+            <h2>Galería de Fotos</h2>
+            <h2>Photo Gallery</h2>
+            
+            <div class="gallery">
+                <img src="casita-images/IMG_3694.jpg" alt="Vista exterior con montañas">
+                <img src="casita-images/IMG_3709.jpg" alt="Sala con colección de arte">
+                <img src="casita-images/IMG_3710.jpg" alt="Cocina y comedor">
+                <img src="casita-images/IMG_3713.jpg" alt="Área de porche cubierto">
+                <img src="casita-images/IMG_3681.jpg" alt="Detalles de cocina">
+                <img src="casita-images/IMG_3689.jpg" alt="Sala con exhibición de máscaras">
+                <img src="casita-images/IMG_3690.jpg" alt="Espacio de sala abierta">
+                <img src="casita-images/IMG_3700.jpg" alt="Vista del nivel de entrada">
+                <img src="casita-images/IMG_3715.jpg" alt="Espacio de trabajo de cocina">
+                <img src="casita-images/IMG_4126.jpg" alt="Baño con bañera única">
+                <img src="casita-images/DSC02227.jpg" alt="Dormitorio con cama de cuatro postes">
+                <img src="casita-images/DSC02335.jpg" alt="Vista exterior de la casa">
+                <img src="casita-images/File_006.jpg" alt="Área de estar en porche">
+                <img src="casita-images/File_007.jpg" alt="Porche con vista al jardín">
+                <img src="casita-images/File_008.jpg" alt="Porche con vista al pasto">
+                <img src="casita-images/PXL_20211105_224422916.jpg" alt="Detalle interior">
+                <img src="casita-images/WhatsApp_Image_2026-01-20_at_9_16_20_AM.jpg" alt="Espacio de sala interior">
+            </div>
+
+            <div class="farm-link-box">
+                <h3>Explora las Comodidades de la Finca</h3>
+                <h3>Explore Farm Amenities</h3>
+                <p>La Casita es parte de Finca la Querencia, que ofrece jardines orgánicos, estanque para nadar, jacuzzi, rancho comunitario, productos de la finca, ¡y más!</p>
+                <p>La Casita is part of Finca la Querencia, which offers organic gardens, swimming pond, hot tub, community rancho, farm products, and more!</p>
+                <a href="index.html" class="farm-button">Visitar Página de la Finca<br>Visit Farm Page</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2026 La Casita at Finca la Querencia</p>
+            <p>© 2026 La Casita en Finca la Querencia</p>
+        </footer>
+    </div>
+
+    <script>
+        function showLang(lang) {
+            document.querySelectorAll('.lang-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            document.querySelectorAll('.lang-toggle button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('lang-' + lang).classList.add('active');
+            document.getElementById('btn-' + lang).classList.add('active');
+        }
+    </script>
+</body>
+</html>
