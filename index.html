@@ -1,1 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finca la Querencia - Monteverde Cloud Forest Farm</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --earth-dark: #2d3a2e;
+            --earth-medium: #4a6741;
+            --earth-light: #8b9f87;
+            --cream: #f5f1e8;
+            --terracotta: #c65d3b;
+            --sand: #e8dcc4;
+            --coffee: #5c4033;
+            --forest: #1a3a20;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background-color: var(--cream);
+            color: var(--earth-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--cream);
+            border: 2px solid var(--earth-medium);
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .language-toggle button {
+            background: transparent;
+            border: none;
+            padding: 12px 24px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--earth-dark);
+        }
+
+        .language-toggle button.active {
+            background: var(--earth-medium);
+            color: var(--cream);
+        }
+
+        .language-toggle button:hover:not(.active) {
+            background: var(--sand);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(26, 58, 32, 0.5) 0%, rgba(45, 58, 46, 0.6) 100%), 
+                        url('images/farm-view.jpg') center/cover no-repeat;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /%3E%3C/filter%3E%3Crect width="100" height="100" filter="url(%23noise)" opacity="0.05"/%3E%3C/svg%3E');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            padding: 40px;
+            animation: fadeInUp 1.2s ease-out;
+            max-width: 900px;
+            margin-top: -100px;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 400;
+            color: var(--cream);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            line-height: 1.3;
+        }
+
+        .subhead {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--sand);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero .definition {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--sand);
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--cream);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        /* Get Some Button */
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        .cta-btn {
+            padding: 18px 35px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border: 2px solid transparent;
+        }
+
+        .cta-btn.primary {
+            background: var(--terracotta);
+            color: var(--cream);
+            border-color: var(--terracotta);
+        }
+
+        .cta-btn.primary:hover {
+            background: var(--coffee);
+            border-color: var(--coffee);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: var(--cream);
+            border-color: var(--cream);
+        }
+
+        .cta-btn.secondary:hover {
+            background: var(--cream);
+            color: var(--earth-dark);
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: var(--cream);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        .scroll-indicator p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .scroll-arrow {
+            font-size: 2rem;
+            opacity: 0.8;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            margin-bottom: 60px;
+            color: var(--earth-dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 60%;
+            height: 2px;
+            background: var(--terracotta);
+        }
+
+        /* Introduction */
+        .intro {
+            background: var(--cream);
+        }
+
+        .intro-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+        }
+
+        .intro-text p {
+            margin-bottom: 20px;
+        }
+
+        .intro-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 20px 20px 0 var(--earth-light);
+        }
+
+        /* Amenities Grid */
+        .amenities {
+            background: var(--sand);
+        }
+
+        .amenity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .amenity-card {
+            background: var(--cream);
+            padding: 40px;
+            border-radius: 4px;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--terracotta);
+        }
+
+        .amenity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .amenity-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--earth-medium);
+        }
+
+        .amenity-card p {
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Photo Gallery */
+        .gallery {
+            background: var(--cream);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* Rental Houses */
+        .houses {
+            background: var(--sand);
+        }
+
+        .houses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .house-card {
+            background: linear-gradient(135deg, var(--earth-medium) 0%, var(--earth-dark) 100%);
+            padding: 60px 40px;
+            border-radius: 4px;
+            text-align: center;
+            color: var(--cream);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .house-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /%3E%3C/filter%3E%3Crect width="100" height="100" filter="url(%23noise)" opacity="0.05"/%3E%3C/svg%3E');
+            opacity: 0.2;
+        }
+
+        .house-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .house-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .house-card p {
+            font-size: 1.1rem;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--earth-dark);
+            color: var(--sand);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 1.1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .intro-content {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .language-toggle {
+                top: 10px;
+                right: 10px;
+            }
+
+            .language-toggle button {
+                padding: 10px 18px;
+                font-size: 14px;
+            }
+
+            .intro-image {
+                height: 300px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 0 20px;
+            }
+
+            .cta-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* Hide inactive language */
+        [data-lang]:not(.active-lang) {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button id="lang-en" class="active" onclick="setLanguage('en')">English</button>
+        <button id="lang-es" onclick="setLanguage('es')">Español</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 data-lang="en" class="active-lang">Long-Term Rentals on a Working Farm in Monteverde</h1>
+            <h1 data-lang="es">Alquileres a Largo Plazo en una Finca en Monteverde</h1>
+            
+            <p class="subhead" data-lang="en" class="active-lang">Private houses • Garden access • Pond & hot tub • Calm valley 15–20 min from town</p>
+            <p class="subhead" data-lang="es">Casas privadas • Acceso al huerto • Estanque y jacuzzi • Valle tranquilo a 15-20 min del pueblo</p>
+
+            <div class="cta-buttons">
+                <a href="the-lilly-pad.html" class="cta-btn primary">
+                    <span data-lang="en" class="active-lang">View The Lilly Pad</span>
+                    <span data-lang="es">Ver The Lilly Pad</span>
+                </a>
+                <a href="la-casita.html" class="cta-btn primary">
+                    <span data-lang="en" class="active-lang">View La Casita</span>
+                    <span data-lang="es">Ver La Casita</span>
+                </a>
+                <a href="https://wa.me/50683723431" class="cta-btn secondary" target="_blank">
+                    <span data-lang="en" class="active-lang">Message us on WhatsApp</span>
+                    <span data-lang="es">Contáctanos por WhatsApp</span>
+                </a>
+            </div>
+            
+            <div class="scroll-indicator" onclick="document.querySelector('.intro').scrollIntoView({behavior: 'smooth'})">
+                <p data-lang="en" class="active-lang">Scroll to explore</p>
+                <p data-lang="es">Desplázate para explorar</p>
+                <div class="scroll-arrow">↓</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="intro">
+        <div class="container">
+            <h2 class="section-title" data-lang="en">Welcome to Our Valley</h2>
+            <h2 class="section-title" data-lang="es">Bienvenidos a Nuestro Valle</h2>
+            
+            <div class="intro-content">
+                <div class="intro-text">
+                    <div data-lang="en" class="active-lang">
+                        <p>Finca la Querencia sits at the end of the road in its own private valley, 300 meters below Monteverde—giving us a slightly warmer climate while maintaining that perfect spring-like temperature year-round. We're about 15 minutes by car from Monteverde Centro and 20 minutes from Santa Elena. On foot, Monteverde Centro is roughly an hour's walk up a steep hill.</p>
+                        
+                        <p>Here, the rhythm of farm life guides each day—sheep going to pasture, cows coming in for milking, and the garden offering its seasonal abundance. This is a place where you can harvest your dinner from the organic garden, watch calves play in misty pastures, and fall asleep to the sounds of the cloud forest.</p>
+                        
+                        <p>We welcome renters who appreciate farm life, organic gardening, and the slower pace of living close to the land.</p>
+                    </div>
+                    
+                    <div data-lang="es">
+                        <p>Finca la Querencia se encuentra al final del camino en su propio valle privado, 300 metros más abajo de Monteverde—lo que nos da un clima un poco más cálido mientras mantenemos esa temperatura perfecta como primavera durante todo el año. Estamos a unos 15 minutos en carro de Monteverde Centro y 20 minutos de Santa Elena. A pie, Monteverde Centro está aproximadamente a una hora de caminata subiendo una colina empinada.</p>
+                        
+                        <p>Aquí, el ritmo de la vida en la finca guía cada día: ovejas yendo al pasto, vacas entrando a ordeñar y el jardín ofreciendo su abundancia estacional. Este es un lugar donde puede cosechar su cena del huerto orgánico, ver terneros jugar en los pastos neblinosos y dormirse con los sonidos del bosque nuboso.</p>
+                        
+                        <p>Damos la bienvenida a inquilinos que aprecian la vida en la finca, la jardinería orgánica y el ritmo más lento de vivir cerca de la tierra.</p>
+                    </div>
+                </div>
+                
+                <img src="images/farm-view.jpg" alt="Finca la Querencia valley view" class="intro-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities -->
+    <section class="amenities">
+        <div class="container">
+            <h2 class="section-title" data-lang="en">What Makes Us Special</h2>
+            <h2 class="section-title" data-lang="es">Lo Que Nos Hace Especiales</h2>
+            
+            <div class="amenity-grid">
+                <div class="amenity-card">
+                    <h3 data-lang="en">Organic Garden</h3>
+                    <h3 data-lang="es">Huerto Orgánico</h3>
+                    <div data-lang="en" class="active-lang">
+                        <p>Our large organic garden is maintained by the owners and a full-time worker. While not certified organic, we know exactly what goes on our plants—and what doesn't. Renters are welcome to harvest produce when it's abundant. It's common to see everyone "shopping" in the garden before dinner. We'd love to have renters who share our passion for organic gardening and homesteading.</p>
+                    </div>
+                    <div data-lang="es">
+                        <p>Nuestro amplio huerto orgánico es mantenido por los dueños y un trabajador de tiempo completo. Aunque no está certificado como orgánico, sabemos exactamente qué le ponemos a las plantas y qué no. Los inquilinos pueden cosechar productos cuando hay abundancia. Es común ver a todos "comprando" en el huerto antes de la cena. Nos encantaría tener inquilinos que compartan nuestra pasión por la jardinería orgánica y la vida rural.</p>
+                    </div>
+                </div>
+
+                <div class="amenity-card">
+                    <h3 data-lang="en">Swimming Pond</h3>
+                    <h3 data-lang="es">Estanque para Nadar</h3>
+                    <div data-lang="en" class="active-lang">
+                        <p>Our naturally spring-fed swimming pond is open to renters year-round, subject to safety rules. The crystal-clear water is surrounded by tropical plantings and offers a refreshing escape on warm afternoons.</p>
+                    </div>
+                    <div data-lang="es">
+                        <p>Nuestro estanque para nadar, alimentado naturalmente por manantiales, está abierto para los inquilinos todo el año, sujeto a reglas de seguridad. El agua cristalina está rodeada de plantas tropicales y ofrece un escape refrescante en las tardes cálidas.</p>
+                    </div>
+                </div>
+
+                <div class="amenity-card">
+                    <h3 data-lang="en">Hot Tub</h3>
+                    <h3 data-lang="es">Jacuzzi</h3>
+                    <div data-lang="en" class="active-lang">
+                        <p>Next to the swimming pond sits our solar and wood-fired hot tub. After receiving training on fire management, renters can enjoy this unique feature. Note: we don't build fires during the driest season for safety.</p>
+                    </div>
+                    <div data-lang="es">
+                        <p>Junto al estanque para nadar se encuentra nuestro jacuzzi calentado con energía solar y leña. Después de recibir capacitación sobre el manejo del fuego, los inquilinos pueden disfrutar de esta característica única. Nota: no hacemos fuego durante la temporada más seca por seguridad.</p>
+                    </div>
+                </div>
+
+                <div class="amenity-card">
+                    <h3 data-lang="en">The Rancho</h3>
+                    <h3 data-lang="es">El Rancho</h3>
+                    <div data-lang="en" class="active-lang">
+                        <p>Our community rancho features a shared kitchen, dining area, fireplace, and gathering space available to all renters. It's perfect for larger meals or social time.</p>
+                    </div>
+                    <div data-lang="es">
+                        <p>Nuestro rancho comunitario cuenta con cocina compartida, área de comedor, chimenea y espacio de reunión disponible para todos los inquilinos. Es perfecto para comidas más grandes o tiempo social.</p>
+                    </div>
+                </div>
+
+                <div class="amenity-card">
+                    <h3 data-lang="en">Farm Products</h3>
+                    <h3 data-lang="es">Productos de la Finca</h3>
+                    <div data-lang="en" class="active-lang">
+                        <p>In addition to garden vegetables, fresh dairy products including milk, yogurt, and cheese are usually available for purchase. Farm-grown coffee, eggs, kombucha, and kimchee are often available as well. We welcome renters who will add to what's available for the Querencia community.</p>
+                    </div>
+                    <div data-lang="es">
+                        <p>Además de las verduras del huerto, productos lácteos frescos, incluyendo leche, yogur y queso, generalmente están disponibles para compra. Café cultivado en la finca, huevos, kombucha y kimchi también suelen estar disponibles. Damos la bienvenida a inquilinos que contribuyan a lo que está disponible para la comunidad de Querencia.</p>
+                    </div>
+                </div>
+
+                <div class="amenity-card">
+                    <h3 data-lang="en">Farm Life</h3>
+                    <h3 data-lang="es">Vida de Finca</h3>
+                    <div data-lang="en" class="active-lang">
+                        <p>Our houses are very private and surrounded by nature, orchards, and coffee plantings. Several ponds attract abundant wildlife. Sheep and calves graze the pastures near the houses—renters feed kitchen scraps to the sheep. This is an active dairy farm where much work is done on horseback, so you'll witness authentic farm operations daily.</p>
+                    </div>
+                    <div data-lang="es">
+                        <p>Nuestras casas son muy privadas y están rodeadas de naturaleza, huertos y cafetales. Varios estanques atraen abundante vida silvestre. Ovejas y terneros pastan en los pastos cerca de las casas—los inquilinos alimentan a las ovejas con los restos de la cocina. Esta es una lechería activa donde mucho trabajo se hace a caballo, así que verá operaciones auténticas de finca todos los días.</p>
+                    </div>
+                </div>
+
+                <div class="amenity-card">
+                    <h3 data-lang="en">The Bunkhouse</h3>
+                    <h3 data-lang="es">La Casa de Huéspedes</h3>
+                    <div data-lang="en" class="active-lang">
+                        <p>We maintain a small guest cabin for our visitors, which renters can book for their own guests subject to availability. The bunkhouse has a private bathroom with hot shower and a great porch overlooking the pastures and garden.</p>
+                    </div>
+                    <div data-lang="es">
+                        <p>Mantenemos una pequeña cabaña de huéspedes para nuestros visitantes, que los inquilinos pueden reservar para sus propios invitados según disponibilidad. La casa de huéspedes tiene baño privado con ducha caliente y un gran porche con vista a los pastos y el jardín.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title" data-lang="en">Life on the Farm</h2>
+            <h2 class="section-title" data-lang="es">La Vida en la Finca</h2>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/swimming-pond.jpg" alt="Swimming pond">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/hot-tub-pond.jpg" alt="Hot tub and pond">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/rancho-interior.jpg" alt="Rancho common area">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/garden-view.jpg" alt="Organic garden">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/coffee-flowering.jpg" alt="Coffee flowers">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/harvest.jpg" alt="Garden harvest">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/milking.jpg" alt="Milking time">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/horse-work.jpg" alt="Farm work on horseback">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/baby-lambs.jpg" alt="Newborn lambs">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/girl-calf-mist.jpg" alt="Morning in the pastures">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/sheep-mist.jpg" alt="Sheep in the mist">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gulf-sunset.jpg" alt="Gulf view sunset">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/pizza-oven.jpg" alt="Pizza oven">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/coffee-drying.jpg" alt="Coffee processing">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/beets.jpg" alt="Colorful beets from garden">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/cow-rain-hat.jpg" alt="Farm life">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/girl-garden.jpg" alt="Harvesting in the garden">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/ocean-view.jpg" alt="Ocean view from farm">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p data-lang="en" class="active-lang">&copy; 2026 Finca la Querencia. A working farm in the Monteverde Cloud Forest.</p>
+            <p data-lang="es">&copy; 2026 Finca la Querencia. Una finca en el Bosque Nuboso de Monteverde.</p>
+        </div>
+    </footer>
+
+    <script>
+        function setLanguage(lang) {
+            // Update button states
+            document.querySelectorAll('.language-toggle button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('lang-' + lang).classList.add('active');
+            
+            // Hide all language elements
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.classList.remove('active-lang');
+            });
+            
+            // Show selected language elements
+            document.querySelectorAll('[data-lang="' + lang + '"]').forEach(el => {
+                el.classList.add('active-lang');
+            });
+            
+            // Store preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+        
+        // Load saved language preference
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            setLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
 
