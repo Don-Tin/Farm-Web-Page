@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Quinta Querencia - Family Compound at Finca la Querencia</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:      #4a7c59;
+      --green-dark: #2d5a3d;
+      --green-light:#e8f0eb;
+      --brown:      #6b4c2a;
+      --brown-light:#f5f0e8;
+      --cream:      #faf7f2;
+      --text:       #2c2c2c;
+      --muted:      #666;
+      --gold:       #c9902a;
+    }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .lang-bar {
+      background: var(--green-dark);
+      text-align: right;
+      padding: 6px 24px;
+    }
+    .lang-bar button {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.4);
+      color: #fff;
+      padding: 3px 12px;
+      margin-left: 6px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      border-radius: 3px;
+      transition: background 0.2s;
+    }
+    .lang-bar button.active,
+    .lang-bar button:hover { background: rgba(255,255,255,0.15); }
+
+    .top-nav { background: var(--green); padding: 12px 24px; }
+    .top-nav a { color: #fff; text-decoration: none; font-size: 0.9rem; opacity: 0.9; }
+    .top-nav a:hover { opacity: 1; text-decoration: underline; }
+
+    .es { display: none; }
+
+    .hero {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--brown) 100%);
+      color: #fff;
+      text-align: center;
+      padding: 60px 24px 50px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: normal;
+      letter-spacing: 0.03em;
+      margin-bottom: 10px;
+    }
+    .hero .subtitle { font-size: 1.1rem; opacity: 0.85; font-style: italic; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    section { padding: 50px 0; }
+    section + section { border-top: 1px solid #ddd; }
+
+    h2 { font-size: 1.8rem; font-weight: normal; color: var(--green-dark); margin-bottom: 18px; }
+    h3 { font-size: 1.2rem; color: var(--brown); margin: 28px 0 10px; font-weight: normal; }
+    p  { margin-bottom: 16px; }
+    p:last-child { margin-bottom: 0; }
+
+    .price-box {
+      background: var(--green-dark);
+      color: #fff;
+      border-radius: 8px;
+      padding: 36px 40px;
+      margin: 40px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      align-items: flex-start;
+    }
+    .price-main { flex: 1 1 180px; }
+    .price-main .amount { font-size: 3rem; font-weight: bold; line-height: 1; }
+    .price-main .per    { font-size: 0.9rem; opacity: 0.75; margin-top: 4px; }
+    .price-details { flex: 2 1 280px; }
+    .price-details ul { list-style: none; padding: 0; margin-bottom: 0; }
+    .price-details ul li {
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+    .price-details ul li:last-child { border-bottom: none; }
+    .price-details ul li::before   { content: "✓  "; opacity: 0.7; }
+
+    .cta-buttons { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-family: Georgia, serif;
+      transition: opacity 0.2s;
+    }
+    .btn:hover        { opacity: 0.85; }
+    .btn-whatsapp     { background: #25d366; color: #fff; }
+    .btn-email        { background: #fff; color: var(--green-dark); }
+
+    .contact-details   { margin-top: 20px; font-size: 0.95rem; }
+    .contact-details a { color: var(--green-light); }
+
+    .sleeping-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin: 28px 0;
+    }
+    .sleeping-card {
+      background: var(--brown-light);
+      border-left: 4px solid var(--green);
+      padding: 20px;
+      border-radius: 0 6px 6px 0;
+    }
+    .sleeping-card h4 { color: var(--green-dark); margin-bottom: 8px; font-size: 1rem; }
+    .sleeping-card p  { font-size: 0.92rem; color: var(--muted); margin: 0; }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .gallery img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; border-radius: 4px;
+      transition: transform 0.3s; cursor: pointer;
+    }
+    .gallery img:hover { transform: scale(1.02); }
+
+    .structure-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin: 28px 0;
+    }
+    @media (max-width: 620px) { .structure-grid { grid-template-columns: 1fr; } }
+
+    .structure-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+    .structure-card img  { width: 100%; height: 200px; object-fit: cover; }
+    .structure-card .card-body { padding: 20px; }
+    .structure-card h3   { margin: 0 0 10px; color: var(--green-dark); }
+    .structure-card p    { font-size: 0.92rem; color: var(--muted); margin: 0; }
+    .structure-card .card-link { display: inline-block; margin-top: 12px; color: var(--green); text-decoration: none; font-size: 0.88rem; }
+    .structure-card .card-link:hover { text-decoration: underline; }
+
+    .farm-callout {
+      background: var(--green-light);
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin: 28px 0;
+      border-left: 5px solid var(--green);
+    }
+    .farm-callout p { color: var(--green-dark); margin-bottom: 0; }
+
+    .transport-note {
+      background: #fff8e7;
+      border-left: 4px solid var(--gold);
+      padding: 16px 20px;
+      margin: 28px 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.93rem;
+    }
+
+    .amenities-block {
+      background: var(--green-light);
+      border-radius: 8px;
+      padding: 30px;
+      text-align: center;
+      margin: 40px 0 0;
+    }
+
+    footer {
+      background: var(--green-dark);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 24px;
+      font-size: 0.85rem;
+      margin-top: 60px;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img  { max-width: 90vw; max-height: 90vh; border-radius: 4px; }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 28px;
+      color: #fff; font-size: 2rem; cursor: pointer; line-height: 1;
+    }
+
+    @media (max-width: 600px) {
+      .price-box { flex-direction: column; }
+      h2 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <button class="active" onclick="setLang('en')">English</button>
+  <button onclick="setLang('es')">Español</button>
+</div>
+
+<nav class="top-nav">
+  <a href="https://don-tin.github.io/Farm-Web-Page/index.html">
+    <span class="en">← Back to Farm</span>
+    <span class="es">← Volver a la Finca</span>
+  </a>
+</nav>
+
+<div class="hero">
+  <h1>La Quinta Querencia</h1>
+  <p class="subtitle en">A Private Family Compound on a Working Farm · Monteverde Cloud Forest, Costa Rica</p>
+  <p class="subtitle es" style="display:none;">Un Conjunto Familiar Privado en una Finca · Bosque Nuboso de Monteverde, Costa Rica</p>
+</div>
+
+<div class="container">
+
+  <!-- Overview -->
+  <section>
+    <h2><span class="en">A Place for Families Who Want Something Real</span><span class="es" style="display:none;">Un Lugar para Familias que Buscan Algo Auténtico</span></h2>
+
+    <p><span class="en">La Quinta Querencia is a private family compound on Finca la Querencia — a working dairy, coffee, and vegetable farm tucked at the end of the road in San Luis de Monteverde. At the highest point in the valley, the farm is a little warmer than Monteverde Centro but still beautifully cool. It is completely private, yet just 20 minutes by car from town.</span><span class="es" style="display:none;">La Quinta Querencia es un conjunto familiar privado en Finca la Querencia — una finca lechera, cafetalera y de vegetales al final del camino en San Luis de Monteverde. En el punto más alto del valle, la finca es un poco más cálida que Monteverde Centro pero aún agradablemente fresca. Es completamente privada, a solo 20 minutos en carro del centro.</span></p>
+
+    <p><span class="en">The compound consists of three structures — La Casita, The Bunkhouse, and The Rancho — clustered together in their own quiet corner of the farm, separate from any other houses on the property. La Casita gives parents a full house with kitchen, living room, dining area, and bedroom. The Bunkhouse, just 30 feet away, gives the kids their own one-room cabin with bunk beds, a private bathroom, and a porch looking out over the pastures and forest. The Rancho ties it all together as a covered outdoor gathering space with a stone fireplace. Together the compound sleeps up to 6, and we configure the beds to suit your family before you arrive.</span><span class="es" style="display:none;">El conjunto consta de tres estructuras — La Casita, El Albergue y El Rancho — agrupadas en su propio rincón tranquilo de la finca, separadas de cualquier otra casa en la propiedad. La Casita ofrece a los padres una casa completa con cocina, sala, comedor y dormitorio. El Albergue, a solo 9 metros, ofrece a los niños su propia cabaña de un ambiente con literas, baño privado y porche con vista a los pastos y el bosque. El Rancho lo une todo como espacio cubierto al aire libre con chimenea de piedra. Juntos, el conjunto duerme hasta 6 personas, y configuramos las camas según su familia antes de que lleguen.</span></p>
+
+    <div class="sleeping-grid">
+      <div class="sleeping-card">
+        <h4><span class="en">La Casita — Parents</span><span class="es" style="display:none;">La Casita — Padres</span></h4>
+        <p><span class="en">Full kitchen, living &amp; dining area, spacious bedroom with double bed, bathroom with tub and shower</span><span class="es" style="display:none;">Cocina completa, sala y comedor, dormitorio espacioso con cama doble, baño con bañera y ducha</span></p>
+      </div>
+      <div class="sleeping-card">
+        <h4><span class="en">The Bunkhouse — Kids</span><span class="es" style="display:none;">El Albergue — Niños</span></h4>
+        <p><span class="en">One-room cabin sleeping 2–4, bed configuration arranged to suit your family, private bathroom with hot shower, porch with pasture views</span><span class="es" style="display:none;">Cabaña de un ambiente para 2–4 personas, configuración de camas a su medida, baño privado con ducha caliente, porche con vista a los pastos</span></p>
+      </div>
+      <div class="sleeping-card">
+        <h4><span class="en">The Rancho</span><span class="es" style="display:none;">El Rancho</span></h4>
+        <p><span class="en">An open-air covered rancho with a massive stone fireplace and large dining table, steps from La Casita. The heart of the compound for evening gatherings.</span><span class="es" style="display:none;">Un rancho cubierto al aire libre con una imponente chimenea de piedra y gran mesa, a pocos pasos de La Casita. El corazón del conjunto para reuniones por la tarde.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Farm Life -->
+  <section>
+    <h2><span class="en">Farm Life for Families</span><span class="es" style="display:none;">La Vida en la Finca para Familias</span></h2>
+
+    <p><span class="en">This is not a resort. It is a real farm, and for the right family, that is exactly the point.</span><span class="es" style="display:none;">Esto no es un resort. Es una finca de verdad, y para la familia correcta, eso es precisamente lo atractivo.</span></p>
+
+    <p><span class="en">Finca la Querencia runs dairy cattle, sheep, and coffee alongside a large organic kitchen garden. There are almost always baby cows and lambs on the property — a source of endless fascination for children. The garden is big, organic, and entirely theirs to wander. Kids learn quickly that the best snack is whatever is ripe: tomatoes still warm from the sun, snap peas, fresh herbs.</span><span class="es" style="display:none;">Finca la Querencia es una finca lechera con ganado, ovejas y café, además de un gran jardín orgánico. Casi siempre hay terneros y corderos en la propiedad — una fuente de fascinación interminable para los niños. El jardín es grande, orgánico y completamente suyo para explorar. Los niños aprenden rápido que el mejor bocado es lo que esté maduro: tomates aún calientes del sol, vainitas, hierbas frescas.</span></p>
+
+    <div class="farm-callout">
+      <p><span class="en">Older children can walk to the Monteverde Friends School via <strong>La Lajero</strong> — the original road to Monteverde, now a rocky unmaintained trail that continues past the farm as a public right of way. No cars, no traffic, just a rugged cloud forest path that our own two boys walked every day for years. Younger children will need to be driven to school, which is an easy 20-minute trip into town.</span><span class="es" style="display:none;">Los niños mayores pueden caminar a la Escuela de Amigos de Monteverde por <strong>La Lajero</strong> — el camino original a Monteverde, ahora una senda rocosa sin mantenimiento que continúa más allá de la finca como derecho de paso público. Sin carros, sin tráfico, solo un sendero rústico en el bosque nuboso que nuestros propios dos hijos recorrieron todos los días durante años. Los niños más pequeños necesitarán ser llevados a la escuela, lo cual es un viaje fácil de 20 minutos al centro.</span></p>
+    </div>
+
+    <p><span class="en">The farm sits at the end of the road — completely private, no through traffic, no visible neighbors. At the same time, easily accessible by car and just 20 minutes from the restaurants, shops, and schools of Monteverde Centro.</span><span class="es" style="display:none;">La finca está al final del camino — completamente privada, sin tráfico de paso, sin vecinos visibles. Al mismo tiempo, de fácil acceso en carro y a solo 20 minutos de los restaurantes, tiendas y escuelas de Monteverde Centro.</span></p>
+
+
+  </section>
+
+  <!-- Rental Info -->
+  <section>
+    <h2><span class="en">Rental Information</span><span class="es" style="display:none;">Información de Alquiler</span></h2>
+
+    <div class="price-box">
+      <div class="price-main">
+        <div class="amount">$800</div>
+        <div class="per"><span class="en">per month</span><span class="es" style="display:none;">por mes</span></div>
+      </div>
+      <div class="price-details">
+        <ul>
+          <li><span class="en">La Casita + The Bunkhouse — both structures included</span><span class="es" style="display:none;">La Casita + El Albergue — ambas estructuras incluidas</span></li>
+          <li><span class="en">Water, electricity, internet</span><span class="es" style="display:none;">Agua, electricidad, internet</span></li>
+          <li><span class="en">Bi-weekly cleaning</span><span class="es" style="display:none;">Limpieza quincenal</span></li>
+          <li><span class="en">6 month minimum rental</span><span class="es" style="display:none;">Alquiler mínimo de 6 meses</span></li>
+          <li><span class="en">Bed configuration arranged to suit your family before arrival</span><span class="es" style="display:none;">Configuración de camas según su familia antes de la llegada</span></li>
+          <li><span class="en">Access to rancho, swimming pond, hot tub, and organic garden</span><span class="es" style="display:none;">Acceso al rancho, estanque, jacuzzi y jardín orgánico</span></li>
+        </ul>
+        <div class="cta-buttons">
+          <a class="btn btn-whatsapp" href="https://wa.me/50683723431">
+            <span class="en">Contact via WhatsApp</span><span class="es" style="display:none;">Contactar por WhatsApp</span>
+          </a>
+          <a class="btn btn-email" href="mailto:murthantim@gmail.com">
+            <span class="en">Send Email</span><span class="es" style="display:none;">Enviar Correo</span>
+          </a>
+        </div>
+        <div class="contact-details">
+          <strong>WhatsApp:</strong> 8372-3431 <span class="en">or</span><span class="es" style="display:none;">o</span> 8370-4014<br>
+          <strong>Email:</strong> <a href="mailto:murthantim@gmail.com">murthantim@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Two Structures -->
+  <section>
+    <h2><span class="en">The Three Structures</span><span class="es" style="display:none;">Las Tres Estructuras</span></h2>
+
+    <div class="structure-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+      <div class="structure-card">
+        <img src="https://don-tin.github.io/Farm-Web-Page/casita-images/IMG_3700.jpg" alt="La Casita exterior" />
+        <div class="card-body">
+          <h3>La Casita</h3>
+          <p><span class="en">The original farmhouse — full kitchen, dining and living area, spacious bedroom with double bed, bathroom with tub and shower. A protected spot with sweeping views over the gardens, pastures, and the jungle canopy rising up the cliff beyond.</span><span class="es" style="display:none;">La casa original de la finca — cocina completa, sala y comedor, dormitorio con cama doble, baño con bañera y ducha. Vista panorámica sobre los jardines, pastos y el bosque que sube por el acantilado.</span></p>
+          <a class="card-link" href="https://don-tin.github.io/Farm-Web-Page/la-casita.html"><span class="en">View full La Casita listing →</span><span class="es" style="display:none;">Ver listado completo de La Casita →</span></a>
+        </div>
+      </div>
+
+      <div class="structure-card">
+        <img src="bunkhouse-images/03-exterior-front.jpg" alt="The Bunkhouse exterior" />
+        <div class="card-body">
+          <h3><span class="en">The Bunkhouse</span><span class="es" style="display:none;">El Albergue</span></h3>
+          <p><span class="en">A charming one-room wooden cabin tucked among the trees, about 30 feet from La Casita. Its own private bathroom with hot shower, and a generous porch with rustic log furniture overlooking the pastures and forest. Bed configuration — bunks, singles, or a combination — arranged to suit your family before you arrive.</span><span class="es" style="display:none;">Una encantadora cabaña de madera de un ambiente escondida entre los árboles, a unos 9 metros de La Casita. Baño privado con ducha caliente y porche con muebles rústicos con vista a los pastos y el bosque. Configuración de camas según su familia antes de llegar.</span></p>
+        </div>
+      </div>
+
+      <div class="structure-card">
+        <img src="bunkhouse-images/10-rancho.jpg" alt="The Rancho" />
+        <div class="card-body">
+          <h3><span class="en">The Rancho</span><span class="es" style="display:none;">El Rancho</span></h3>
+          <p><span class="en">An open-air covered rancho with a massive stone fireplace and large dining table, steps from La Casita. The heart of the compound for evening gatherings around the fire.</span><span class="es" style="display:none;">Un rancho cubierto al aire libre con una imponente chimenea de piedra y gran mesa comedor, a pocos pasos de La Casita. El corazón del conjunto para reuniones al caer la noche.</span></p>
+          <p style="font-size:0.82rem; color:var(--muted); font-style:italic; margin-top:10px;"><span class="en">Currently being renovated — updated photos coming soon.</span><span class="es" style="display:none;">Actualmente en renovación — fotos actualizadas próximamente.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bunkhouse Gallery -->
+  <section>
+    <h2><span class="en">The Bunkhouse — Photo Gallery</span><span class="es" style="display:none;">El Albergue — Galería de Fotos</span></h2>
+    <div class="gallery">
+      <img src="bunkhouse-images/01-exterior-distant.jpg" alt="Bunkhouse among tropical flowers"          onclick="openLightbox(this.src)" />
+      <img src="bunkhouse-images/02-porch-chairs.jpg"     alt="Bunkhouse porch with log furniture"         onclick="openLightbox(this.src)" />
+      <img src="bunkhouse-images/03-exterior-front.jpg"   alt="Bunkhouse exterior with bougainvillea"      onclick="openLightbox(this.src)" />
+      <img src="bunkhouse-images/06-exterior-garden.jpg"  alt="Bunkhouse from garden with stone wall"      onclick="openLightbox(this.src)" />
+      <img src="bunkhouse-images/04-interior-desk.jpg"    alt="Bunkhouse interior — light and airy"        onclick="openLightbox(this.src)" />
+      <img src="bunkhouse-images/07-bunk-beds.jpg"        alt="Bunk beds with mosquito netting"            onclick="openLightbox(this.src)" />
+      <img src="bunkhouse-images/05-bathroom.jpg"         alt="Bunkhouse private bathroom"                 onclick="openLightbox(this.src)" />
+      <img src="bunkhouse-images/08-porch-view-green.jpg" alt="View from porch — lush valley"              onclick="openLightbox(this.src)" />
+      <img src="bunkhouse-images/09-porch-view-misty.jpg" alt="Misty valley view with sheep grazing"       onclick="openLightbox(this.src)" />
+    </div>
+  </section>
+
+  <!-- Casita Gallery -->
+  <section>
+    <h2><span class="en">La Casita — Photo Gallery</span><span class="es" style="display:none;">La Casita — Galería de Fotos</span></h2>
+    <div class="gallery">
+      <img src="https://don-tin.github.io/Farm-Web-Page/casita-images/DSC02335.jpg"                                 alt="La Casita exterior"              onclick="openLightbox(this.src)" />
+      <img src="https://don-tin.github.io/Farm-Web-Page/casita-images/IMG_3700.jpg"                                 alt="Exterior with mountain backdrop" onclick="openLightbox(this.src)" />
+      <img src="https://don-tin.github.io/Farm-Web-Page/casita-images/IMG_3694.jpg"                                 alt="Property with mountain view"     onclick="openLightbox(this.src)" />
+      <img src="https://don-tin.github.io/Farm-Web-Page/casita-images/IMG_3713.jpg"                                 alt="Covered porch area"              onclick="openLightbox(this.src)" />
+      <img src="https://don-tin.github.io/Farm-Web-Page/casita-images/File_006.jpg"                                 alt="Porch seating area"              onclick="openLightbox(this.src)" />
+      <img src="https://don-tin.github.io/Farm-Web-Page/casita-images/File_007.jpg"                                 alt="Porch with garden view"          onclick="openLightbox(this.src)" />
+      <img src="https://don-tin.github.io/Farm-Web-Page/casita-images/IMG_3709.jpg"                                 alt="Living room with art"            onclick="openLightbox(this.src)" />
+      <img src="https://don-tin.github.io/Farm-Web-Page/casita-images/IMG_3710.jpg"                                 alt="Kitchen and dining area"         onclick="openLightbox(this.src)" />
+      <img src="https://don-tin.github.io/Farm-Web-Page/casita-images/IMG_3681.jpg"                                 alt="Kitchen details"                 onclick="openLightbox(this.src)" />
+      <img src="https://don-tin.github.io/Farm-Web-Page/casita-images/DSC02227.jpg"                                 alt="Bedroom with four-poster bed"    onclick="openLightbox(this.src)" />
+      <img src="https://don-tin.github.io/Farm-Web-Page/casita-images/IMG_4126.jpg"                                 alt="Bathroom with unique tub"        onclick="openLightbox(this.src)" />
+      <img src="https://don-tin.github.io/Farm-Web-Page/casita-images/WhatsApp_Image_2026-01-20_at_9_16_20_AM.jpg" alt="Interior living space"           onclick="openLightbox(this.src)" />
+    </div>
+  </section>
+
+  <!-- Farm Amenities -->
+  <div class="amenities-block">
+    <p><span class="en">La Quinta Querencia is part of <strong>Finca la Querencia</strong> — a working dairy, coffee, and vegetable farm with organic gardens, swimming pond, hot tub, community rancho, fresh farm products, and the cloud forest all around.</span><span class="es" style="display:none;">La Quinta Querencia es parte de <strong>Finca la Querencia</strong> — una finca lechera, cafetalera y de vegetales con jardines orgánicos, estanque, jacuzzi, rancho comunitario, productos frescos y el bosque nuboso alrededor.</span></p>
+    <br>
+    <a class="btn" style="background:var(--green-dark);color:#fff;" href="https://don-tin.github.io/Farm-Web-Page/index.html">
+      <span class="en">Visit Farm Page</span><span class="es" style="display:none;">Visitar Página de la Finca</span>
+    </a>
+  </div>
+
+</div><!-- /container -->
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">×</span>
+  <img id="lightbox-img" src="" alt="" />
+</div>
+
+<footer>
+  <p><span class="en">© 2026 La Quinta Querencia at Finca la Querencia · San Luis de Monteverde, Costa Rica</span><span class="es" style="display:none;">© 2026 La Quinta Querencia en Finca la Querencia · San Luis de Monteverde, Costa Rica</span></p>
+</footer>
+
+<script>
+  function setLang(lang) {
+    const isEs = lang === 'es';
+    document.querySelectorAll('.en').forEach(el => el.style.display = isEs ? 'none' : '');
+    document.querySelectorAll('.es').forEach(el => el.style.display = isEs ? ''     : 'none');
+    document.querySelectorAll('.lang-bar button').forEach((btn, i) => {
+      btn.classList.toggle('active', isEs ? i === 1 : i === 0);
+    });
+  }
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+
+</body>
+</html>
