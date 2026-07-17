@@ -1,0 +1,79 @@
+PRICE CHANGE CHECKLIST — querenciahomestead.com
+================================================
+Put this file in the root of the Farm-Web-Page repo. Visitors never see it.
+
+CURRENT PRICES (July 2026):
+    The Lilly Pad        ₡390,000 / month
+    La Casita            ₡250,000 / month
+    La Quinta Querencia  ₡365,000 / month
+
+If a price changes, it must be changed in ALL SIX places below.
+Three of them are INVISIBLE on the page — those are the ones that get
+forgotten, and they're exactly the ones Google and AI assistants read.
+A stale number in the JSON-LD means an AI will confidently quote the
+wrong price to someone.
+
+
+ON THE WEBSITE (this repo)
+--------------------------
+[ ] 1. index.html — meta description in <head>
+       Search for:  <meta name="description"
+       Contains the range: "₡250,000–₡390,000/month"
+       INVISIBLE on the page.
+
+[ ] 2. index.html — JSON-LD block in <head>
+       Search for:  application/ld+json
+       Three "price" fields: 390000, 250000, 365000
+       (each appears TWICE — in "offers" and in "priceSpecification")
+       INVISIBLE on the page. Machines read this first.
+
+[ ] 3. index.html — the visible "Rental Details" section
+       Search for:  Rental Details
+       Both English and Spanish versions right below each other.
+       NOTE: Spanish uses periods (₡390.000), English uses commas (₡390,000).
+
+[ ] 4. alquileres.html — the three house descriptions
+       Search for:  precio
+       Spanish number format: ₡390.000
+
+[ ] 5. the-lilly-pad.html / la-casita.html / la-quinta-querencia.html
+       Each has its own price in the <head> meta description.
+       Search each file for: <meta name="description"
+       INVISIBLE on the page.
+
+[ ] 6. llms.txt
+       The plain-text AI summary. All three prices listed under "## The houses".
+       INVISIBLE — written specifically for AI assistants.
+
+
+OFF THE WEBSITE
+---------------
+[ ] 7. The four printed packets (CIEE, MFS, MVI, CFS)
+       Regenerate from the rental toolkit zip — do NOT hand-edit PDFs.
+       Give the toolkit to Claude and say "change X to Y, regenerate all four."
+       Then reprint.
+
+[ ] 8. Live listings, wherever they're posted at the time:
+       Facebook Marketplace (3 separate listings)
+       Encuentra24
+       Craigslist Costa Rica
+
+
+AFTER CHANGING THE WEBSITE
+--------------------------
+Commit the files. GitHub Pages rebuilds in ~1 minute.
+Then spot-check the live site:
+    www.querenciahomestead.com            (Rental Details section)
+    www.querenciahomestead.com/alquileres.html
+    www.querenciahomestead.com/llms.txt
+
+Google/Bing will re-crawl on their own within days. No action needed.
+
+
+EASIEST METHOD
+--------------
+Start a new Claude conversation and say:
+
+    "Here's my website repo and my rental toolkit. Change La Casita from
+     ₡250,000 to ₡275,000 everywhere — website and packets. Use
+     PRICES-CHECKLIST.txt so nothing gets missed."
