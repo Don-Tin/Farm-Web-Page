@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Bunkhouse — Finca Querencia, San Luis de Monteverde</title>
+<meta name="description" content="The Bunkhouse: a one-room wooden cabin with private bath and pasture views on Finca Querencia, San Luis de Monteverde. Currently being remodeled.">
+<link rel="canonical" href="https://www.querenciahomestead.com/bunkhouse.html">
+<meta property="og:image" content="https://www.querenciahomestead.com/bunkhouse-images/03-exterior-front.jpg">
+<link rel="icon" href="images/finca-querencia-logo.webp" type="image/webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;500&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#EEE9DC; --sand:#D4CFB9; --ink:#24251F; --rust:#A7442B; --sage:#7E8F68;
+  --line:rgba(36,37,31,.18);
+  --display:'Inknut Antiqua', Georgia, serif;
+  --body:'Geist', system-ui, -apple-system, sans-serif;
+  --wrap:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{background:var(--cream);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+
+/* language toggle — class-based, both versions in the markup */
+body.lang-en [data-lang="es"], body.lang-es [data-lang="en"]{display:none !important}
+
+/* header */
+.bar{position:sticky;top:0;z-index:50;background:var(--rust);color:var(--ink)}
+.bar-inner{max-width:var(--wrap);margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{width:34px;height:auto}
+.brand span{font-family:var(--display);font-size:19px;text-transform:uppercase;letter-spacing:-.02em;line-height:1;padding-top:4px}
+.langs{display:flex;gap:4px}
+.langs button{font:500 12px var(--body);letter-spacing:.06em;text-transform:uppercase;background:none;border:1px solid transparent;color:var(--ink);padding:5px 9px;cursor:pointer}
+.langs button.active{border-color:var(--ink)}
+.menu{border-bottom:1px solid var(--line);background:var(--cream);position:sticky;top:58px;z-index:40}
+.menu ul{max-width:var(--wrap);margin:0 auto;padding:12px 24px;list-style:none;display:flex;gap:26px;overflow-x:auto;scrollbar-width:none}
+.menu ul::-webkit-scrollbar{display:none}
+.menu a{text-decoration:none;font-size:13px;white-space:nowrap}
+.menu a:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* shared */
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:-.025em;line-height:1.02}
+h1{font-size:clamp(44px,7vw,84px)}
+h2{font-size:clamp(30px,4.2vw,48px);margin-bottom:22px}
+h3{font-size:22px;margin-bottom:8px}
+p+p{margin-top:14px}
+.btn{display:inline-flex;align-items:center;gap:14px;background:var(--rust);color:var(--cream);text-decoration:none;font-size:14px;padding:14px 22px;border:1px solid var(--rust);transition:background .2s,color .2s}
+.btn:hover{background:transparent;color:var(--rust)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--cream)}
+.link{display:inline-flex;gap:10px;font-size:14px;text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px}
+.arrow{font-size:15px;line-height:1}
+section{border-top:1px solid var(--line)}
+
+/* hero */
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding-top:64px;padding-bottom:72px}
+.hero p.lede{font-size:17px;max-width:30em;margin:26px 0 30px}
+.hero .actions{display:flex;flex-wrap:wrap;gap:22px;align-items:center}
+.hero figure img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.definition{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;max-width:32em}
+.definition em{font-family:var(--display);font-style:normal;text-transform:uppercase;font-size:15px}
+
+/* explore grid */
+.explore{padding:56px 0 72px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px}
+.card{text-decoration:none;display:block}
+.card .ph{background:var(--sand);overflow:hidden}
+.card img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .5s}
+.card:hover img{transform:scale(1.03)}
+.card .row{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px}
+.card h3{font-size:24px;margin:0}
+.card p{font-size:13px;margin-top:4px}
+
+/* feature sections */
+.feature{padding:80px 0}
+.feature .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.feature.flip figure{order:2}
+.feature figure img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.feature .text{max-width:34em}
+.feature .actions{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:28px}
+.feature.dark{background:var(--ink);color:var(--cream);border-top:none}
+.feature.dark .btn.ghost{color:var(--cream);border-color:var(--cream)}
+.feature.dark .btn.ghost:hover{background:var(--cream);color:var(--ink)}
+.feature.dark .link{border-color:var(--cream)}
+.feature.sand{background:var(--sand)}
+.note{font-size:12px;opacity:.75;margin-top:16px}
+
+/* stay */
+.stay{padding:80px 0}
+.stay .intro{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-bottom:44px}
+.houses{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.house img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--sand)}
+.house h3{margin-top:16px}
+.house .meta{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-bottom:10px}
+.house p{font-size:14px;margin-bottom:16px}
+.amen{display:flex;flex-wrap:wrap;gap:8px;margin-top:40px}
+.amen span{border:1px solid var(--line);padding:6px 12px;font-size:12px}
+
+/* farm */
+.farm{padding:80px 0}
+.farm .cols{display:grid;grid-template-columns:1.1fr .9fr;gap:56px}
+.facts{border-top:1px solid var(--ink)}
+.facts div{display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.facts b{font-weight:500}
+.strip{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:56px}
+.strip img{width:100%;aspect-ratio:1/1;object-fit:cover}
+
+/* footer */
+footer{background:var(--rust);color:var(--ink);padding:56px 0 28px}
+footer .cols{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:32px}
+footer h4{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:16px;margin-bottom:12px}
+footer ul{list-style:none;font-size:14px}
+footer li{margin-bottom:6px}
+footer a{text-decoration:none}
+footer a:hover{text-decoration:underline}
+footer .logo{width:120px;margin-bottom:14px}
+footer .fine{margin-top:44px;padding-top:18px;border-top:1px solid rgba(36,37,31,.3);font-size:12px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:900px){
+  .hero .wrap,.feature .wrap,.stay .intro,.farm .cols{grid-template-columns:1fr;gap:32px}
+  .feature.flip figure{order:0}
+  .grid,.houses{grid-template-columns:1fr 1fr}
+  .strip{grid-template-columns:repeat(3,1fr)}
+  footer .cols{grid-template-columns:1fr 1fr}
+  .hero figure img{aspect-ratio:4/3}
+}
+@media (max-width:560px){
+  .grid,.houses{grid-template-columns:1fr}
+  .brand span{font-size:16px}
+  .hero .wrap{padding-top:36px}
+  .feature,.stay,.farm{padding:56px 0}
+}
+
+.banner{background:var(--ink);color:var(--cream);text-align:center;padding:14px 24px;font-size:14px}
+.banner b{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:-.01em;margin-right:8px}
+.back{display:inline-block;margin:28px 0 0;font-size:13px;text-decoration:none;border-bottom:1px solid var(--ink)}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:48px}
+.gallery img{width:100%;aspect-ratio:4/3;object-fit:cover}
+@media (max-width:900px){.gallery{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body class="lang-en">
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="index.html"><img src="images/finca-querencia-logo.webp" alt="" width="34" height="38"><span>Finca Querencia</span></a>
+    <div class="langs">
+      <button type="button" data-set-lang="en" class="active">English</button>
+      <button type="button" data-set-lang="es">Español</button>
+    </div>
+  </div>
+</header>
+
+<div class="banner">
+  <span data-lang="en"><b>Being remodeled</b> The Bunkhouse is closed for renovation and will be back in a few months.</span>
+  <span data-lang="es"><b>En remodelación</b> El Albergue está cerrado por remodelación y vuelve en unos meses.</span>
+</div>
+
+<main>
+<div class="wrap"><a class="back" href="index.html#stay"><span data-lang="en">← Back to the farm</span><span data-lang="es">← Volver a la finca</span></a></div>
+
+<section class="hero" style="border-top:none">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow"><span data-lang="en">Stay · Finca Querencia</span><span data-lang="es">Hospedaje · Finca Querencia</span></p>
+      <h1><span data-lang="en">The Bunkhouse</span><span data-lang="es">El Albergue</span></h1>
+      <p class="lede" data-lang="en">A one-room wooden cabin tucked among the trees, with its own private bathroom and hot shower, and a generous porch with rustic log furniture looking out over the pastures and forest.</p>
+      <p class="lede" data-lang="es">Una cabaña de madera de un solo ambiente entre los árboles, con baño privado y agua caliente, y un corredor amplio con muebles rústicos de troncos, con vista a los potreros y el bosque.</p>
+      <p data-lang="en">Just steps away is the Rancho — an open-air covered gathering space with a massive stone fireplace and a big dining table, the place to be on a cool evening.</p>
+      <p data-lang="es">A pocos pasos está el Rancho — un espacio techado al aire libre con una enorme chimenea de piedra y una mesa grande, el lugar ideal para una noche fresca.</p>
+      <div class="amen" style="margin-top:28px">
+        <span data-lang="en">One-room cabin</span><span data-lang="es">Un ambiente</span>
+        <span data-lang="en">Bunk beds</span><span data-lang="es">Camarotes</span>
+        <span data-lang="en">Private bath, hot shower</span><span data-lang="es">Baño privado, agua caliente</span>
+        <span data-lang="en">Porch with pasture views</span><span data-lang="es">Corredor con vista</span>
+        <span data-lang="en">Next to the Rancho</span><span data-lang="es">Junto al Rancho</span>
+      </div>
+      <div class="actions" style="margin-top:30px">
+        <span class="btn ghost" style="cursor:default"><span data-lang="en">Not taking bookings during the remodel</span><span data-lang="es">Sin reservas durante la remodelación</span></span>
+      </div>
+      <p class="note" data-lang="en">In the meantime, see our other houses on <a href="https://www.airbnb.com/users/profile/1769107506276589408" target="_blank" rel="noopener">Juan Pablo's Airbnb</a>.</p>
+      <p class="note" data-lang="es">Mientras tanto, vea nuestras otras casas en el <a href="https://www.airbnb.com/users/profile/1769107506276589408" target="_blank" rel="noopener">Airbnb de Juan Pablo</a>.</p>
+    </div>
+    <figure><img src="bunkhouse-images/03-exterior-front.jpg" alt="The Bunkhouse with bougainvillea in front"></figure>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="padding-bottom:80px">
+    <p class="eyebrow" style="margin-top:56px"><span data-lang="en">Photos — before the remodel</span><span data-lang="es">Fotos — antes de la remodelación</span></p>
+    <div class="gallery" style="margin-top:0">
+      <img src="bunkhouse-images/01-exterior-distant.jpg" alt="Bunkhouse among tropical flowers" loading="lazy">
+      <img src="bunkhouse-images/02-porch-chairs.jpg" alt="Porch with log furniture" loading="lazy">
+      <img src="bunkhouse-images/06-exterior-garden.jpg" alt="The Bunkhouse from the garden" loading="lazy">
+      <img src="bunkhouse-images/04-interior-desk.jpg" alt="Inside — light and airy" loading="lazy">
+      <img src="bunkhouse-images/07-bunk-beds.jpg" alt="Bunk beds with mosquito netting" loading="lazy">
+      <img src="bunkhouse-images/05-bathroom.jpg" alt="Private bathroom" loading="lazy">
+      <img src="bunkhouse-images/08-porch-view-green.jpg" alt="View from the porch" loading="lazy">
+      <img src="bunkhouse-images/09-porch-view-misty.jpg" alt="Misty valley with sheep grazing" loading="lazy">
+      <img src="bunkhouse-images/10-rancho.jpg" alt="The Rancho with its stone fireplace" loading="lazy">
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fine" style="margin-top:0;border-top:none;padding-top:0">
+      <span><a href="index.html">Finca Querencia</a> · San Luis de Monteverde, Costa Rica</span>
+      <span>© 2026 Finca Querencia</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var KEY='fq-lang';
+  function setLang(l){
+    document.body.classList.remove('lang-en','lang-es');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l;
+    document.querySelectorAll('[data-set-lang]').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-set-lang')===l)});
+    try{localStorage.setItem(KEY,l)}catch(e){}
+  }
+  var q=new URLSearchParams(location.search).get('lang');
+  var saved=null;try{saved=localStorage.getItem(KEY)}catch(e){}
+  setLang(q==='es'||q==='en'?q:(saved||((navigator.language||'').slice(0,2)==='es'?'es':'en')));
+  document.querySelectorAll('[data-set-lang]').forEach(function(b){b.addEventListener('click',function(){setLang(b.getAttribute('data-set-lang'))})});
+})();
+</script>
+</body>
+</html>
