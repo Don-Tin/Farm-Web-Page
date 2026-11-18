@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guest Guide — Finca Querencia, San Luis de Monteverde</title>
+<meta name="description" content="Guest guide for Finca Querencia: the houses, the farm, coffee, getting here and things to do near Monteverde.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="images/finca-querencia-logo.webp" type="image/webp">
+<link rel="preload" href="fonts/ocotillo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Ocotillo';src:url('fonts/ocotillo.woff2') format('woff2'),url('fonts/ocotillo.woff') format('woff');font-weight:400;font-style:normal;font-display:swap}
+
+:root{
+  --cream:#EEE9DC; --sand:#D4CFB9; --ink:#24251F; --rust:#A7442B; --sage:#7E8F68;
+  --line:rgba(36,37,31,.18);
+  --display:'Ocotillo', Georgia, serif;
+  --body:'Geist', system-ui, -apple-system, sans-serif;
+  --wrap:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{background:var(--cream);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+
+/* language toggle — class-based, both versions in the markup */
+body.lang-en [data-lang="es"], body.lang-es [data-lang="en"]{display:none !important}
+
+/* header */
+.bar{position:sticky;top:0;z-index:50;background:var(--rust);color:var(--ink)}
+.bar-inner{max-width:var(--wrap);margin:0 auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{width:34px;height:auto}
+.brand span{font-family:var(--display);font-size:19px;text-transform:uppercase;letter-spacing:-.02em;line-height:1;padding-top:4px}
+.langs{display:flex;gap:4px}
+.langs button{font:500 12px var(--body);letter-spacing:.06em;text-transform:uppercase;background:none;border:1px solid transparent;color:var(--ink);padding:5px 9px;cursor:pointer}
+.langs button.active{border-color:var(--ink)}
+.menu{border-bottom:1px solid var(--line);background:var(--cream);position:sticky;top:58px;z-index:40}
+.menu ul{max-width:var(--wrap);margin:0 auto;padding:12px 24px;list-style:none;display:flex;gap:26px;overflow-x:auto;scrollbar-width:none}
+.menu ul::-webkit-scrollbar{display:none}
+.menu a{text-decoration:none;font-size:13px;white-space:nowrap}
+.menu a:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* shared */
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:-.025em;line-height:1.02}
+h1{font-size:clamp(44px,7vw,84px)}
+h2{font-size:clamp(30px,4.2vw,48px);margin-bottom:22px}
+h3{font-size:22px;margin-bottom:8px}
+p+p{margin-top:14px}
+.btn{display:inline-flex;align-items:center;gap:14px;background:var(--rust);color:var(--cream);text-decoration:none;font-size:14px;padding:14px 22px;border:1px solid var(--rust);transition:background .2s,color .2s}
+.btn:hover{background:transparent;color:var(--rust)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--cream)}
+.link{display:inline-flex;gap:10px;font-size:14px;text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px}
+.arrow{font-size:15px;line-height:1}
+section{border-top:1px solid var(--line)}
+
+/* hero */
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding-top:64px;padding-bottom:72px}
+.hero p.lede{font-size:17px;max-width:30em;margin:26px 0 30px}
+.hero .actions{display:flex;flex-wrap:wrap;gap:22px;align-items:center}
+.hero figure img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.definition{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;max-width:32em}
+.definition em{font-family:var(--display);font-style:normal;text-transform:uppercase;font-size:15px}
+
+/* explore grid */
+.explore{padding:56px 0 72px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 24px}
+.card{text-decoration:none;display:block}
+.card .ph{background:var(--sand);overflow:hidden}
+.card img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .5s}
+.card:hover img{transform:scale(1.03)}
+.card .row{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px}
+.card h3{font-size:24px;margin:0}
+.card p{font-size:13px;margin-top:4px}
+
+/* feature sections */
+.feature{padding:80px 0}
+.feature .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.feature.flip figure{order:2}
+.feature figure img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.feature .text{max-width:34em}
+.feature .actions{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:28px}
+.feature.dark{background:var(--ink);color:var(--cream);border-top:none}
+.feature.dark .btn.ghost{color:var(--cream);border-color:var(--cream)}
+.feature.dark .btn.ghost:hover{background:var(--cream);color:var(--ink)}
+.feature.dark .link{border-color:var(--cream)}
+.feature.sand{background:var(--sand)}
+.note{font-size:12px;opacity:.75;margin-top:16px}
+
+/* stay */
+.stay{padding:80px 0}
+.stay .intro{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-bottom:44px}
+.houses{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.house img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--sand)}
+.house h3{margin-top:16px}
+.house .meta{font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin-bottom:10px}
+.house p{font-size:14px;margin-bottom:16px}
+.amen{display:flex;flex-wrap:wrap;gap:8px;margin-top:40px}
+.amen span{border:1px solid var(--line);padding:6px 12px;font-size:12px}
+
+
+/* reviews */
+.reviews{margin-top:64px;padding-top:40px;border-top:1px solid var(--line)}
+.reviews .score{font-size:40px;margin:0}
+.reviews .stars{font-family:var(--body);font-size:18px;color:var(--rust);letter-spacing:.1em;vertical-align:middle}
+.reviews .note{max-width:40em}
+.review-grid{columns:3 300px;column-gap:24px;margin-top:32px}
+.review{break-inside:avoid;margin:0 0 24px;padding:22px;background:var(--sand)}
+.review blockquote{font-size:14px;line-height:1.65}
+.review figcaption{margin-top:14px;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.review figcaption span{opacity:.65}
+
+/* farm */
+.farm{padding:80px 0}
+.farm .cols{display:grid;grid-template-columns:1.1fr .9fr;gap:56px}
+.facts{border-top:1px solid var(--ink)}
+.facts div{display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.facts b{font-weight:500}
+.strip{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:56px}
+.strip img{width:100%;aspect-ratio:1/1;object-fit:cover}
+
+/* footer */
+footer{background:var(--rust);color:var(--ink);padding:56px 0 28px}
+footer .cols{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:32px}
+footer h4{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:16px;margin-bottom:12px}
+footer ul{list-style:none;font-size:14px}
+footer li{margin-bottom:6px}
+footer a{text-decoration:none}
+footer a:hover{text-decoration:underline}
+footer .logo{width:120px;margin-bottom:14px}
+footer .fine{margin-top:44px;padding-top:18px;border-top:1px solid rgba(36,37,31,.3);font-size:12px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media (max-width:900px){
+  .hero .wrap,.feature .wrap,.stay .intro,.farm .cols{grid-template-columns:1fr;gap:32px}
+  .feature.flip figure{order:0}
+  .grid,.houses{grid-template-columns:1fr 1fr}
+  .strip{grid-template-columns:repeat(3,1fr)}
+  footer .cols{grid-template-columns:1fr 1fr}
+  .hero figure img{aspect-ratio:4/3}
+}
+@media (max-width:560px){
+  .grid,.houses{grid-template-columns:1fr}
+  .brand span{font-size:16px}
+  .hero .wrap{padding-top:36px}
+  .feature,.stay,.farm{padding:56px 0}
+}
+
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.toc a{border:1px solid var(--ink);padding:7px 12px;font-size:13px;text-decoration:none}
+.toc a:hover{background:var(--ink);color:var(--cream)}
+.g{padding:64px 0}
+.g .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
+.g h2{font-size:clamp(28px,3.6vw,40px)}
+.g ul.tips{list-style:none;border-top:1px solid var(--ink)}
+.g ul.tips li{padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.g ul.tips li b{font-weight:600}
+.house2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.house2 img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.house2 h3{margin:14px 0 6px}
+.house2 p{font-size:14px}
+.tag{display:inline-block;background:var(--ink);color:var(--cream);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;margin-bottom:8px}
+.pics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:20px}
+.pics img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.sos{background:var(--rust);color:var(--cream);padding:22px 24px;font-size:15px}
+.sos b{font-family:var(--display);font-weight:400;font-size:26px;display:block;line-height:1.1}
+@media (max-width:900px){.g .wrap,.house2{grid-template-columns:1fr;gap:24px}}
+</style>
+</head>
+<body class="lang-en">
+
+<header class="bar">
+  <div class="bar-inner">
+    <span class="brand"><img src="images/finca-querencia-logo.webp" alt="" width="34" height="38"><span>Finca Querencia</span></span>
+    <div class="langs">
+      <button type="button" data-set-lang="en" class="active">English</button>
+      <button type="button" data-set-lang="es">Español</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" style="border-top:none">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow"><span data-lang="en">Guest guide</span><span data-lang="es">Guía para huéspedes</span></p>
+      <h1><span data-lang="en">Welcome to the farm</span><span data-lang="es">Bienvenidos a la finca</span></h1>
+      <p class="lede" data-lang="en">You're staying on Finca Querencia, a working dairy and coffee farm at the end of the road in San Luis de Monteverde, Costa Rica. This page tells you a little about the houses, the farm, our coffee, and how to make the most of your time here.</p>
+      <p class="lede" data-lang="es">Usted se hospeda en Finca Querencia, una lechería y cafetal al final del camino en San Luis de Monteverde, Costa Rica. Aquí encontrará un poco sobre las casas, la finca, nuestro café y cómo aprovechar al máximo su estadía.</p>
+      <p class="note" data-lang="en">For anything about your reservation — check-in, dates, questions or requests — please message your host through the app you booked with.</p>
+      <p class="note" data-lang="es">Para cualquier asunto de su reserva — llegada, fechas, preguntas o solicitudes — escríbale a su anfitrión por la aplicación donde reservó.</p>
+      <nav class="toc" aria-label="Contents">
+        <a href="#houses"><span data-lang="en">The houses</span><span data-lang="es">Las casas</span></a>
+        <a href="#farm"><span data-lang="en">The farm</span><span data-lang="es">La finca</span></a>
+        <a href="#coffee"><span data-lang="en">Coffee</span><span data-lang="es">Café</span></a>
+        <a href="#arrive"><span data-lang="en">Getting here</span><span data-lang="es">Cómo llegar</span></a>
+        <a href="#nearby"><span data-lang="en">Things to do</span><span data-lang="es">Qué hacer</span></a>
+        <a href="#good"><span data-lang="en">Good to know</span><span data-lang="es">Bueno saber</span></a>
+      </nav>
+    </div>
+    <figure><img src="images/farm-view.jpg" alt="The valley at Finca Querencia"></figure>
+  </div>
+</section>
+
+<section class="g" id="houses">
+  <div class="wrap" style="grid-template-columns:1fr">
+    <div>
+      <p class="eyebrow"><span data-lang="en">The houses</span><span data-lang="es">Las casas</span></p>
+      <h2><span data-lang="en">Built by hand, one at a time</span><span data-lang="es">Hechas a mano, una por una</span></h2>
+    </div>
+    <div class="house2">
+      <article>
+        <img src="lilly-pad-images/01-hero-exterior.jpg" alt="The Lilly Pad" loading="lazy">
+        <h3>The Lilly Pad</h3>
+        <p data-lang="en">A compact cottage on three levels beside a fish pond, among fruit trees and coffee. Kitchen, dining area and a small sitting area are on the entry level; the living room is a few stone steps down, with the sleeping loft above it, reached by a narrow staircase built in over the bookshelves.</p>
+      <p data-lang="es">Una casita compacta en tres niveles junto a un estanque de peces, entre frutales y café. La cocina, el comedor y una pequeña sala están en el nivel de entrada; la sala principal está unos escalones de piedra más abajo, con el dormitorio en el tapanco arriba, al que se sube por una escalera angosta construida sobre los estantes de libros.</p>
+        <p data-lang="en">Handmade concrete counters and sink, an insulated cement soaking tub and a shower, and solar hot water — lots of it. The patio looks out over the tilapia pond.</p>
+      <p data-lang="es">Encimeras y fregadero de concreto hechos a mano, una bañera de cemento aislada y ducha, y agua caliente solar — y bastante. El patio da al estanque de tilapias.</p>
+        <div class="pics">
+          <img src="lilly-pad-images/04-kitchen-main.jpg" alt="Kitchen" loading="lazy">
+          <img src="lilly-pad-images/11-living-room-view.jpg" alt="Living room" loading="lazy">
+          <img src="lilly-pad-images/16-bathroom.jpg" alt="Bathroom with cement tub" loading="lazy">
+        </div>
+      </article>
+      <article>
+        <img src="casita-images/DSC02335.jpg" alt="La Casita" loading="lazy">
+        <h3>La Casita</h3>
+        <p data-lang="en">The original farmhouse, modernized. A big open kitchen and living area, a bedroom, and a covered porch with sweeping views over the gardens and pastures to the forest rising up the cliff beyond. Solar water heating.</p>
+      <p data-lang="es">La casa original de la finca, renovada. Una cocina y sala amplias y abiertas, un dormitorio y un corredor techado con vista a las huertas, los potreros y el bosque que sube por el farallón. Agua caliente solar.</p>
+        <p data-lang="en">The Rancho — an open-air covered space with a big stone fireplace and a long table — is just steps away.</p>
+      <p data-lang="es">A pocos pasos está el Rancho — un espacio techado al aire libre con una gran chimenea de piedra y una mesa larga.</p>
+        <div class="pics">
+          <img src="casita-images/IMG_3700.jpg" alt="La Casita with mountain backdrop" loading="lazy">
+          <img src="casita-images/IMG_3713.jpg" alt="Covered porch" loading="lazy">
+          <img src="bunkhouse-images/10-rancho.jpg" alt="The Rancho" loading="lazy">
+        </div>
+      </article>
+    </div>
+    <p class="note" data-lang="en">The Bunkhouse, our third cabin, is being remodeled and will be back in a few months.</p>
+    <p class="note" data-lang="es">El Albergue, nuestra tercera cabaña, está en remodelación y vuelve en unos meses.</p>
+  </div>
+</section>
+
+<section class="g sand" id="farm" style="background:var(--sand)">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow"><span data-lang="en">The farm</span><span data-lang="es">La finca</span></p>
+      <h2><span data-lang="en">A real working farm</span><span data-lang="es">Una finca de verdad</span></h2>
+      <p data-lang="en">Twenty-five hectares in our own valley, about 300 meters below Monteverde — a little warmer, and far from the tourist bustle. We've farmed here for more than twenty years.</p>
+      <p data-lang="es">Veinticinco hectáreas en nuestro propio valle, unos 300 metros más abajo de Monteverde — un poco más cálido y lejos del bullicio turístico. Llevamos más de veinte años trabajando esta tierra.</p>
+      <div class="pics" style="grid-template-columns:1fr 1fr">
+        <img src="images/swimming-pond.jpg" alt="Swimming pond" loading="lazy">
+        <img src="images/hot-tub-pond.jpg" alt="Hot tub by the pond" loading="lazy">
+      </div>
+    </div>
+    <ul class="tips">
+      <li data-lang="en"><b>Animals.</b> This is an active dairy, with cows, calves, sheep, horses, chickens and dogs, and much of the work is still done on horseback. Enjoy them — and give the larger animals their space.</li>
+      <li data-lang="es"><b>Animales.</b> Esta es una lechería activa, con vacas, terneros, ovejas, caballos, gallinas y perros, y mucho del trabajo todavía se hace a caballo. Disfrútelos — y deles espacio a los animales grandes.</li>
+      <li data-lang="en"><b>Swimming pond.</b> Spring-fed and open year-round, subject to a few safety rules your host will share.</li>
+      <li data-lang="es"><b>Estanque para nadar.</b> De agua de naciente y abierto todo el año, con algunas reglas de seguridad que su anfitrión le indicará.</li>
+      <li data-lang="en"><b>Hot tub.</b> Heated by sun and a wood fire, next to the pond. Ask your host to show you how the fire works before using it. We don't light fires in the driest part of the year.</li>
+      <li data-lang="es"><b>Jacuzzi.</b> Calentado con sol y fuego de leña, junto al estanque. Pídale a su anfitrión que le enseñe cómo funciona el fuego antes de usarlo. En la época más seca del año no se encienden fuegos.</li>
+      <li data-lang="en"><b>The garden.</b> A large organic garden and lots of fruit trees, grown without chemicals. Ask your host what's ripe and what you're welcome to pick.</li>
+      <li data-lang="es"><b>La huerta.</b> Una huerta orgánica grande y muchos árboles frutales, sin químicos. Pregúntele a su anfitrión qué está listo y qué puede cosechar.</li>
+      <li data-lang="en"><b>Farm products.</b> Fresh dairy, eggs and vegetables are often available. Ask your host.</li>
+      <li data-lang="es"><b>Productos de la finca.</b> Muchas veces hay lácteos frescos, huevos y verduras. Pregúntele a su anfitrión.</li>
+      <li data-lang="en"><b>Wildlife.</b> Keep an eye out for toucans, motmots and monkeys in the trees around the houses — guests have spotted more here than on guided tours.</li>
+      <li data-lang="es"><b>Vida silvestre.</b> Esté atento a tucanes, momotos y monos en los árboles cerca de las casas — los huéspedes han visto más aquí que en los tours guiados.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="g" id="coffee">
+  <div class="wrap">
+    <div>
+      <img src="images/coffee-cherries.jpg" alt="Ripe coffee cherries" loading="lazy" style="width:100%;aspect-ratio:1/1;object-fit:cover">
+    </div>
+    <div>
+      <p class="eyebrow">Pueblo Chico Coffee</p>
+      <h2><span data-lang="en">The coffee outside your door</span><span data-lang="es">El café al lado de su puerta</span></h2>
+      <p data-lang="en">The coffee growing around the houses is Pueblo Chico — honey-processed Arabica grown, picked and dried here on the farm, then sorted, roasted and packed by the family. Notes of caramel, cacao, nuts and citrus.</p>
+      <p data-lang="es">El café que crece alrededor de las casas es Pueblo Chico — arábica proceso honey cultivado, cosechado y secado aquí en la finca, y luego escogido, tostado y empacado por la familia. Notas de caramelo, cacao, nueces y cítricos.</p>
+      <p data-lang="en">Bags of coffee are available on the farm, and during your stay you can walk the coffee with the family on a tour, from flower to cup. Ask your host.</p>
+      <p data-lang="es">Puede comprar bolsas de café en la finca y, durante su estadía, recorrer los cafetales con la familia en un tour, de la flor a la taza. Pregúntele a su anfitrión.</p>
+    </div>
+  </div>
+</section>
+
+<section class="g sand" id="arrive" style="background:var(--sand)">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow"><span data-lang="en">Getting here</span><span data-lang="es">Cómo llegar</span></p>
+      <h2><span data-lang="en">At the end of the road</span><span data-lang="es">Al final del camino</span></h2>
+      <p class="note" data-lang="en">Your host will send exact directions after you book.</p>
+      <p class="note" data-lang="es">Su anfitrión le enviará las indicaciones exactas después de reservar.</p>
+    </div>
+    <ul class="tips">
+      <li data-lang="en"><b>By car.</b> About 15 minutes to Monteverde Centro and 20 minutes to Santa Elena. A car is strongly recommended — ideally all-wheel drive.</li>
+      <li data-lang="es"><b>En carro.</b> Unos 15 minutos a Monteverde Centro y 20 minutos a Santa Elena. Se recomienda mucho tener carro — idealmente con doble tracción.</li>
+      <li data-lang="en"><b>Without a car.</b> Taxis will come to the farm. Town is about an hour's walk away, uphill and steep — lovely if you like a real hike.</li>
+      <li data-lang="es"><b>Sin carro.</b> Los taxis llegan a la finca. El pueblo queda a una hora a pie, subiendo una cuesta empinada — muy lindo si le gusta caminar en serio.</li>
+      <li data-lang="en"><b>La Lajero.</b> The original road to Monteverde, now a rocky, unmaintained trail and public right-of-way that continues past the farm. No cars — just cloud forest.</li>
+      <li data-lang="es"><b>La Lajero.</b> El camino original a Monteverde, hoy un sendero de piedra sin mantenimiento y de paso público que sigue más allá de la finca. Sin carros — solo bosque nuboso.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="g" id="nearby">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow"><span data-lang="en">Things to do</span><span data-lang="es">Qué hacer</span></p>
+      <h2><span data-lang="en">Around Monteverde</span><span data-lang="es">Por Monteverde</span></h2>
+      <p data-lang="en">There's plenty to do on the farm itself — many guests say they hardly needed to leave. When you do:</p>
+      <p data-lang="es">En la finca misma hay mucho que hacer — muchos huéspedes dicen que casi no necesitaron salir. Cuando quiera salir:</p>
+    </div>
+    <ul class="tips">
+      <li data-lang="en"><b>Cloud forest reserves.</b> The Monteverde Cloud Forest Reserve and the Santa Elena Reserve are both a short drive away. Go early for birds — and for the resplendent quetzal.</li>
+      <li data-lang="es"><b>Reservas de bosque nuboso.</b> La Reserva Biológica Bosque Nuboso Monteverde y la Reserva Santa Elena quedan a poca distancia en carro. Vaya temprano para ver aves — y el quetzal.</li>
+      <li data-lang="en"><b>Night walks.</b> Guided night tours are a Monteverde specialty: tarantulas, sloths, frogs and sleeping birds.</li>
+      <li data-lang="es"><b>Caminatas nocturnas.</b> Los tours de noche son una especialidad de Monteverde: tarántulas, perezosos, ranas y aves dormidas.</li>
+      <li data-lang="en"><b>Hanging bridges and canopy.</b> Several parks around Santa Elena offer bridges and ziplines through the treetops.</li>
+      <li data-lang="es"><b>Puentes colgantes y canopy.</b> Varios parques cerca de Santa Elena tienen puentes y tirolesas entre las copas de los árboles.</li>
+      <li data-lang="en"><b>Town.</b> Monteverde Centro and Santa Elena have restaurants, cafés, groceries, a bank and a pharmacy.</li>
+      <li data-lang="es"><b>El pueblo.</b> Monteverde Centro y Santa Elena tienen restaurantes, cafés, supermercados, banco y farmacia.</li>
+      <li data-lang="en"><b>Sunsets.</b> On clear evenings the Gulf of Nicoya lights up to the west — the upper pastures are the place to watch.</li>
+      <li data-lang="es"><b>Atardeceres.</b> En las tardes despejadas el Golfo de Nicoya se ilumina al oeste — los potreros de arriba son el mejor lugar para verlo.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="g sand" id="good" style="background:var(--sand)">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow"><span data-lang="en">Good to know</span><span data-lang="es">Bueno saber</span></p>
+      <h2><span data-lang="en">Practical things</span><span data-lang="es">Cosas prácticas</span></h2>
+      <div class="sos"><b>911</b><span data-lang="en">Emergencies anywhere in Costa Rica</span><span data-lang="es">Emergencias en todo Costa Rica</span></div>
+    </div>
+    <ul class="tips">
+      <li data-lang="en"><b>Internet.</b> Starlink high-speed internet — good enough for video calls and remote work.</li>
+      <li data-lang="es"><b>Internet.</b> Internet Starlink de alta velocidad — suficiente para videollamadas y teletrabajo.</li>
+      <li data-lang="en"><b>Hot water.</b> Solar heated. It's usually hottest in the afternoon and evening.</li>
+      <li data-lang="es"><b>Agua caliente.</b> Calentada con energía solar. Normalmente está más caliente en la tarde y la noche.</li>
+      <li data-lang="en"><b>Weather.</b> Spring-like most of the year, but mornings and evenings can be cool and misty, and it can rain any month. Bring a warm layer, a rain jacket and shoes that can get muddy.</li>
+      <li data-lang="es"><b>Clima.</b> Como primavera casi todo el año, pero las mañanas y noches pueden ser frescas y con neblina, y puede llover cualquier mes. Traiga un abrigo, una jacket impermeable y zapatos que se puedan embarrar.</li>
+      <li data-lang="en"><b>Bugs.</b> It's a farm in the tropics. A flashlight for night walks and a little repellent go a long way.</li>
+      <li data-lang="es"><b>Insectos.</b> Es una finca en el trópico. Una linterna para caminar de noche y un poco de repelente ayudan mucho.</li>
+      <li data-lang="en"><b>Questions?</b> Message your host through the app you booked with — they're happy to help.</li>
+      <li data-lang="es"><b>Preguntas?</b> Escríbale a su anfitrión por la aplicación donde reservó — con gusto le ayuda.</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fine" style="margin-top:0;border-top:none;padding-top:0">
+      <span>Finca Querencia · San Luis de Monteverde · Costa Rica</span>
+      <span data-lang="en">Pura vida — enjoy your stay.</span><span data-lang="es">Pura vida — disfrute su estadía.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var KEY='fq-lang';
+  function setLang(l){
+    document.body.classList.remove('lang-en','lang-es');
+    document.body.classList.add('lang-'+l);
+    document.documentElement.lang=l;
+    document.querySelectorAll('[data-set-lang]').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-set-lang')===l)});
+    try{localStorage.setItem(KEY,l)}catch(e){}
+  }
+  var q=new URLSearchParams(location.search).get('lang');
+  var saved=null;try{saved=localStorage.getItem(KEY)}catch(e){}
+  setLang(q==='es'||q==='en'?q:(saved||((navigator.language||'').slice(0,2)==='es'?'es':'en')));
+  document.querySelectorAll('[data-set-lang]').forEach(function(b){b.addEventListener('click',function(){setLang(b.getAttribute('data-set-lang'))})});
+})();
+</script>
+</body>
+</html>
